@@ -5,7 +5,7 @@ import HttpResponse from "../utils/helpers/htttp-response";
 class CadastrarClienteController {
 	constructor(private emailValidator: iEmailValidator, private cadastrarClienteService: iCadastrarClienteService){}
 
-	route(httpRequest: HttpReq){
+	async route(httpRequest: HttpReq){
 		const {email, name, phone, password} = httpRequest.body;
 
 		if(!this.emailValidator || !this.emailValidator.validateEmail)
@@ -25,8 +25,27 @@ class CadastrarClienteController {
 
 		if(!password)
 			return HttpResponse.badRequest("Password");
+
+		try {
+			if(!this.emailValidator.validateEmail(email))
+				return HttpResponse.unauthorized("Invalid Email");
+
+			const token = await this.cadastrarClienteService.cadastrar(
+				email,
+				name,
+				phone,
+				password
+			);
+      
+			if(!token)
+				return HttpResponse.unauthorized("Email in use");
 	
-		return HttpResponse.ok({});
+			return HttpResponse.ok({token});
+
+		} catch (error) {
+			console.error(error);
+			return HttpResponse.serverError();
+		}
 	}
 }
 
