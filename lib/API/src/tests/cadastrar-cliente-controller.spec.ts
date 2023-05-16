@@ -45,7 +45,7 @@ describe("Cadatrar Cliente Controller", () => {
 		};
 	};
 
-	it("É esperado que retorne 400 caso o campo email esteja vazio", async () => {
+	test("É esperado que retorne 400 caso o campo email esteja vazio", async () => {
 		const {sut} = makeSut();
 
 		const httpRequest: HttpReq = {
@@ -64,7 +64,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Email").body);
 	});
 
-	it("É esperado que retorne 400 caso o campo name esteja vazio", async ()=> {
+	test("É esperado que retorne 400 caso o campo name esteja vazio", async ()=> {
 		const {sut} = makeSut();
 
 		const httpRequest: HttpReq = {
@@ -83,7 +83,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Name").body);
 	});
 
-	it("É esperado que retorne 400 caso o campe phone esteja vazio", async () => {
+	test("É esperado que retorne 400 caso o campe phone esteja vazio", async () => {
 		const {sut} = makeSut();
 
 		const httpRequest: HttpReq = {
@@ -102,7 +102,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Phone").body);
 	});
 
-	it("É esperado que retorne 400 caso o campo password esteja vazio", async () => {
+	test("É esperado que retorne 400 caso o campo password esteja vazio", async () => {
 		const {sut} = makeSut();
 
 		const httpRequest: HttpReq = {
@@ -121,7 +121,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Password").body);
 	});
 
-	it("É esperado que retorne 500 caso o emailValidator seja invalido", async () => {
+	test("É esperado que retorne 500 caso o emailValidator seja invalido", async () => {
 		const invalidEmailValidator = {} as iEmailValidator;
 		const cadastrarClienteService = makeCadastrarClienteServiceSpy();
 
@@ -142,7 +142,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpResponse.statusCode).toEqual(500);
 	});
 
-	it("É esperado que retorne 500 caso o CadastrarClienteService seja invalido", async () => {
+	test("É esperado que retorne 500 caso o CadastrarClienteService seja invalido", async () => {
 		const emailValidator = makeEmailValidatorSpy();
 		const cadastrarClienteService = {} as iCadastrarClienteService;
 
@@ -163,7 +163,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpResponse.statusCode).toEqual(500);
 	});
 
-	it("É esperado que retorne 500 caso o emailValidator lance um erro", async() => {
+	test("É esperado que retorne 500 caso o emailValidator lance um erro", async() => {
 		const emailValidatorWithError = {
 			validateEmail : (email: string) => {throw new Error();}
 		} as iEmailValidator;
@@ -187,7 +187,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpResponse.statusCode).toEqual(500);
 	});
 
-	it("É esperado que retorne 500 caso o cadastrarClienteService lance um erro", async() => {
+	test("É esperado que retorne 500 caso o cadastrarClienteService lance um erro", async() => {
 		const emailValidator = makeEmailValidatorSpy();
 		const cadastrarClienteServiceWithError = {
 			cadastrar: 
@@ -211,7 +211,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpResponse.statusCode).toEqual(500);
 	});
 
-	it("É esperado que retorne 401 caso o emailValidator retorne false", async () => {
+	test("É esperado que retorne 401 caso o emailValidator retorne false", async () => {
 		const {sut, emailValidatorSpy} = makeSut();
 
 		emailValidatorSpy.result = false;
@@ -233,7 +233,7 @@ describe("Cadatrar Cliente Controller", () => {
 
 	});
 
-	it("É esperado que retorne 401 caso cadastrarClienteService retorne nulo", async () => {
+	test("É esperado que retorne 401 caso cadastrarClienteService retorne nulo", async () => {
 		const {sut, cadastrarClienteServiceSpy} = makeSut();
 
 		cadastrarClienteServiceSpy.token = "";
@@ -254,7 +254,7 @@ describe("Cadatrar Cliente Controller", () => {
 		expect(httpResponse.body).toEqual(HttpResponse.unauthorized("Email in use").body);
 	});
 
-	it("É esperado que retorne 200 e um token caso tudo esteja correto", async () => {
+	test("É esperado que retorne 200 e um token caso tudo esteja correto", async () => {
 		const {sut, cadastrarClienteServiceSpy} = makeSut();
 
 		const httpRequest: HttpReq = {

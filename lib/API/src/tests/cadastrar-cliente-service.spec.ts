@@ -77,7 +77,7 @@ describe("Cadastrar Usuário Service", () => {
 		return {userRepository, tokenManager, sut, encrypter};
 	};
 
-	it("É esperado que lance um erro caso o UserRepository seja invalido", async () => {
+	test("É esperado que lance um erro caso o UserRepository seja invalido", async () => {
 		const invalidUserRepository = {} as iUserRepository;
 		const tokenManager = makeTokenManagerSpy();
 		const encrypter = makeEncrypterSpy();
@@ -98,7 +98,7 @@ describe("Cadastrar Usuário Service", () => {
 		).rejects.toThrow(new InvalidDependencyError("UserRepository"));
 	});
 
-	it("É esperado que lance um erro caso o TokenManager seja invalido", async () => {
+	test("É esperado que lance um erro caso o TokenManager seja invalido", async () => {
 		const userRepository = makeUserRepositorySpy();
 		const encrypter = makeEncrypterSpy();
 		const tokenManager = {} as iTokenManager;
@@ -119,7 +119,7 @@ describe("Cadastrar Usuário Service", () => {
 		).rejects.toThrow(new InvalidDependencyError("TokenManager"));
 	});
 
-	it("É esperado que lance um erro caso o Encrypter seja invalido", async () => {
+	test("É esperado que lance um erro caso o Encrypter seja invalido", async () => {
 		const userRepository = makeUserRepositorySpy();
 		const encrypter = {} as iEncrypter;
 		const tokenManager = makeTokenManagerSpy();
@@ -140,7 +140,7 @@ describe("Cadastrar Usuário Service", () => {
 		).rejects.toThrow(new InvalidDependencyError("Encrypter"));
 	});
 
-	it("É esperado que retorne undefined caso já exista uma conta com o email fornecido", async () => {
+	test("É esperado que retorne undefined caso já exista uma conta com o email fornecido", async () => {
 		const {userRepository, sut} = makeSut();
 
 		userRepository.userGet = {
@@ -161,7 +161,7 @@ describe("Cadastrar Usuário Service", () => {
 		expect(result).toBeUndefined();
 	});
 
-	it("É esperado que lance um erro caso a função createUser retorne undefined", async () => {
+	test("É esperado que lance um erro caso a função createUser retorne undefined", async () => {
 		const {sut, userRepository} = makeSut();
     
 		userRepository.userCreate = undefined;
@@ -174,7 +174,7 @@ describe("Cadastrar Usuário Service", () => {
 		)).rejects.toThrow();
 	});
 
-	it("É esperado que retorne o token corretamente caso tudo ocorra bem", async () => {
+	test("É esperado que retorne o token corretamente caso tudo ocorra bem", async () => {
 		const {sut, tokenManager} = makeSut();
 
 		const result = await sut.cadastrar(
