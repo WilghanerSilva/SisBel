@@ -16,6 +16,7 @@ model User {
   email                String
   profile              String
   password             String
+  phone                String?
   services             Services[]
   EmployeeAppointments Appointment[] @relation(name: "EmployeeAppointments")
   CustomerAppointments Appointment[] @relation(name: "CustomerAppointments")
