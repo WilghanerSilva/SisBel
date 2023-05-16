@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import CadastrarClienteService from "../services/cadastrarClienteService";
+import CadastrarClienteService from "../services/cadastrar-cliente-service";
 import { iEncrypter, iTokenManager, iUserRepository } from "../utils/interfaces";
 import { CreateUserData } from "../utils/types/user-types";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
