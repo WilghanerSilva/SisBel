@@ -1,0 +1,37 @@
+import InvalidDependencyError from "../utils/erros/invaliddependency-error";
+import { iUserRepository, iCadastrarClienteService, iTokenManager, iEncrypter } from "../utils/interfaces";
+
+export default class CadastrarClienteService implements iCadastrarClienteService {
+	constructor(
+    private userRepository: iUserRepository, 
+    private tokenManager: iTokenManager,
+    private encrypter: iEncrypter  
+	){}
+  
+	async cadastrar(email: string, name: string, phone: string, password: string): Promise<string | undefined> {
+		if(!this.userRepository || !this.userRepository.createUser || !this.userRepository.getUserByEmail)
+			throw new InvalidDependencyError("UserRepository");
+    
+		if(!this.tokenManager || !this.tokenManager.generate)
+			throw new InvalidDependencyError("TokenManager");
+
+		if(!this.encrypter || !this.encrypter.crypt)
+			throw new InvalidDependencyError("Encrypter");
+
+		if(await this.userRepository.getUserByEmail(email))
+			return undefined;
+
+		const user = await this.userRepository.createUser({
+			email,
+			name, 
+			phone,
+			password: await this.encrypter.crypt(password),
+			profile: "cliente"
+		});
+
+		if(!user)
+			throw new Error("An error occurred while creating the user");
+
+		return this.tokenManager.generate(user.id);
+	}
+}
