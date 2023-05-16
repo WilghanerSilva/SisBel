@@ -5,25 +5,34 @@ import { HttpReq } from "../utils/types/http-types";
 
 describe("Cadatrar Cliente Controller", () => {
 
-	class EmailValidatorSpy implements iEmailValidator {
-		public result = true;
+	const makeEmailValidatorSpy = () => {
+		class EmailValidatorSpy implements iEmailValidator {
+			public result = true;
 
-		validateEmail(email: string){
-			return this.result;
+			validateEmail(email: string){
+				return this.result;
+			}
 		}
-	}
 
-	class CadastrarClienteServiceSpy implements iCadastrarClienteService {
-		public result = true;
-		async cadastrar(email: string, name: string, password: string, phoneNumber: string): Promise<boolean> {
-			return this.result;
+		return new EmailValidatorSpy;
+	};
+
+
+	const makeCadastrarClienteServiceSpy = () => {
+		class CadastrarClienteServiceSpy implements iCadastrarClienteService {
+			public result = true;
+			async cadastrar(email: string, name: string, password: string, phoneNumber: string): Promise<boolean> {
+				return this.result;
+			}
 		}
-	}
+
+		return new CadastrarClienteServiceSpy;
+	};
 
 
 	const makeSut = () => {
-		const emailValidatorSpy = new EmailValidatorSpy();
-		const cadastrarClienteServiceSpy = new CadastrarClienteServiceSpy();
+		const emailValidatorSpy = makeEmailValidatorSpy();
+		const cadastrarClienteServiceSpy = makeCadastrarClienteServiceSpy();
 
 		const sut = new CadastrarClienteController(emailValidatorSpy, cadastrarClienteServiceSpy);
 
@@ -108,5 +117,47 @@ describe("Cadatrar Cliente Controller", () => {
 
 		expect(httpRes.statusCode).toEqual(400);
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Password").body);
+	});
+
+	it("É esperado que retorne 500 caso o emailValidator seja invalido", async () => {
+		const invalidEmailValidator = {} as iEmailValidator;
+		const cadastrarClienteService = makeCadastrarClienteServiceSpy();
+
+		const sut = new CadastrarClienteController(invalidEmailValidator, cadastrarClienteService);
+
+		const httpReq: HttpReq = {
+			body: {
+				name: "Any name",
+				phone: "8840028922",
+				email: "any_email@mail.com",
+				password: "any_password"
+			},
+			headers: {}
+		};
+
+		const httpResponse = await sut.route(httpReq);
+
+		expect(httpResponse.statusCode).toEqual(500);
+	});
+
+	it("É esperado que retorne 500 caso o CadastrarClienteService seja invalido", async () => {
+		const emailValidator = makeEmailValidatorSpy();
+		const cadastrarClienteService = {} as iCadastrarClienteService;
+
+		const sut = new CadastrarClienteController(emailValidator, cadastrarClienteService);
+
+		const httpReq: HttpReq = {
+			body: {
+				name: "Any name",
+				phone: "8840028922",
+				email: "any_email@mail.com",
+				password: "any_password"
+			},
+			headers: {}
+		};
+
+		const httpResponse = await sut.route(httpReq);
+
+		expect(httpResponse.statusCode).toEqual(500);
 	});
 });

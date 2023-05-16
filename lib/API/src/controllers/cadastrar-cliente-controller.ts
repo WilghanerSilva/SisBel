@@ -7,7 +7,13 @@ class CadastrarClienteController {
 
 	route(httpRequest: HttpReq){
 		const {email, name, phone, password} = httpRequest.body;
-    
+
+		if(!this.emailValidator || !this.emailValidator.validateEmail)
+			return HttpResponse.serverError();
+
+		if(!this.cadastrarClienteService || !this.cadastrarClienteService.cadastrar)
+			return HttpResponse.serverError();
+
 		if(!email)
 			return HttpResponse.badRequest("Email");
     
