@@ -5,7 +5,7 @@ import HttpResponse from "../utils/helpers/htttp-response";
 class CadastrarClienteController {
 	constructor(private emailValidator: iEmailValidator, private cadastrarClienteService: iCadastrarClienteService){}
 
-	async route(httpRequest: HttpReq){
+	async run(httpRequest: HttpReq){
 		const {email, name, phone, password} = httpRequest.body;
 
 		if(!this.emailValidator || !this.emailValidator.validateEmail)
