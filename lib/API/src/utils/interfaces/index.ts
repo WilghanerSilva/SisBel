@@ -3,6 +3,7 @@ import iEmailValidator from "./iEmailValidator";
 import iTokenManager  from "./iTokenManager";
 import iUserRepository from "./iUserRepository";
 import iEncrypter from "./iEncrypter";
+import iController from "./iController";
 
 
 
@@ -11,5 +12,6 @@ export {
 	iEmailValidator,
 	iUserRepository,
 	iTokenManager,
-	iEncrypter
+	iEncrypter,
+	iController
 };
