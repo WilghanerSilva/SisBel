@@ -1,7 +1,8 @@
-import express from "express";
+import Server from "./server";
+import clienteRouter from "./routes/cliente-router";
 
-const app = express();
 
-app.listen(3000, () => {
-	console.log("A API está online!");
-});
+const app = new Server(3000, [clienteRouter]);
+
+
+app.initServer();
