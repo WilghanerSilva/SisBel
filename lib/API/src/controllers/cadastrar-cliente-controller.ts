@@ -28,7 +28,7 @@ class CadastrarClienteController {
 
 		try {
 			if(!this.emailValidator.validateEmail(email))
-				return HttpResponse.unauthorized("Invalid Email");
+				return HttpResponse.unauthorized("O email fornecido é invalido");
 
 			const token = await this.cadastrarClienteService.cadastrar(
 				email,
@@ -38,7 +38,7 @@ class CadastrarClienteController {
 			);
       
 			if(!token)
-				return HttpResponse.unauthorized("Email in use");
+				return HttpResponse.unauthorized("O email fornecido já foi cadastrado");
 	
 			return HttpResponse.ok({token});
 

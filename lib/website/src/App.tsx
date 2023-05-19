@@ -1,17 +1,13 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Login from "./pages/login/login";
-import CadastroCliente from "./pages/cadastro-cliente/cadastro-cliente";
+import { AuthProvider } from "./contexts/auth";
+import AppRoutes from "./routes";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route Component={Login} path="/"/>
-        <Route Component={CadastroCliente} path="/cadastro-cliente"/>
-      </Routes>
-    </BrowserRouter>
-  );
+    <AuthProvider>
+      <AppRoutes/>
+    </AuthProvider>
+  )
 }
 
 export default App;

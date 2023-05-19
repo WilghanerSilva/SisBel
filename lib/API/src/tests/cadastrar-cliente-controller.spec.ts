@@ -58,7 +58,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpRes = await sut.route(httpRequest);
+		const httpRes = await sut.run(httpRequest);
 
 		expect(httpRes.statusCode).toEqual(400);
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Email").body);
@@ -77,7 +77,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpRes = await sut.route(httpRequest);
+		const httpRes = await sut.run(httpRequest);
 
 		expect(httpRes.statusCode).toEqual(400);
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Name").body);
@@ -96,7 +96,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpRes = await sut.route(httpRequest);
+		const httpRes = await sut.run(httpRequest);
 
 		expect(httpRes.statusCode).toEqual(400);
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Phone").body);
@@ -115,7 +115,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpRes = await sut.route(httpRequest);
+		const httpRes = await sut.run(httpRequest);
 
 		expect(httpRes.statusCode).toEqual(400);
 		expect(httpRes.body).toEqual(HttpResponse.badRequest("Password").body);
@@ -137,7 +137,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpResponse = await sut.route(httpRequest);
+		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(500);
 	});
@@ -158,7 +158,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpResponse = await sut.route(httpRequest);
+		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(500);
 	});
@@ -182,7 +182,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpResponse = await sut.route(httpRequest);
+		const httpResponse = await sut.run(httpRequest);
     
 		expect(httpResponse.statusCode).toEqual(500);
 	});
@@ -206,7 +206,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpResponse = await sut.route(httpRequest);
+		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(500);
 	});
@@ -226,10 +226,10 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpResponse = await sut.route(httpRequest);
+		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(401);
-		expect(httpResponse.body).toEqual(HttpResponse.unauthorized("Invalid Email").body);
+		expect(httpResponse.body).toEqual(HttpResponse.unauthorized("O email fornecido é invalido").body);
 
 	});
 
@@ -248,10 +248,10 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpResponse = await sut.route(httpRequest);
+		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(401);
-		expect(httpResponse.body).toEqual(HttpResponse.unauthorized("Email in use").body);
+		expect(httpResponse.body).toEqual(HttpResponse.unauthorized("O email fornecido já foi cadastrado").body);
 	});
 
 	test("É esperado que retorne 200 e um token caso tudo esteja correto", async () => {
@@ -267,7 +267,7 @@ describe("Cadatrar Cliente Controller", () => {
 			headers: {}
 		};
 
-		const httpResponse = await sut.route(httpRequest);
+		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(200);
 		expect(httpResponse.body).toEqual(HttpResponse.ok({token: cadastrarClienteServiceSpy.token}).body);
