@@ -62,7 +62,6 @@ function CadastroCliente () {
     if(password.length > 0 && password.length < 8)
       passwordIsShort = true;
     
-    console.log(phone.length)
     if(phone.length > 0 && (phone.length - 4) < 11){
       phoneNumberIsShort = true;
     }
@@ -84,7 +83,6 @@ function CadastroCliente () {
     if(emailIsInvalid)
       localErrors.push("O email digitado é invalido")
     
-    console.log(localErrors.length <= 0);
     setErrors(localErrors);
 
     return localErrors.length <= 0;
@@ -106,8 +104,6 @@ function CadastroCliente () {
         context.setToken(response.data.data.token);
         context.setSigned(true);
       }).catch((err) => { 
-        console.log(err.response)
-
         if(err.response.status === 401)
           setErrors([err.response.data.message]);
       });
