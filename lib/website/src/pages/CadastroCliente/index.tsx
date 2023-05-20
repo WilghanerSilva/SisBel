@@ -9,7 +9,7 @@ import InputMask from "react-input-mask";
 
 
 function CadastroCliente () {
-  const [erros, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState<string[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -126,7 +126,7 @@ function CadastroCliente () {
             <h1>Cadastre-se</h1>
             <ul className="errors-list">
               {
-                erros.map((error, index) => {
+                errors.map((error, index) => {
                   return (
                     <li className="error" key={index}>{error}</li>
                   )

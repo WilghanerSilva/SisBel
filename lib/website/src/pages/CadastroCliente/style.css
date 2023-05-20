@@ -74,12 +74,12 @@ form > h1 {
 }
 
 .errors-list {
-  min-height: 10%;
-  max-height: 10%;
+  min-height: 15%;
+  max-height: 15%;
   width: 60%;
   text-align: left;
   color: red;
-  font-size: 1rem;
+  font-size: 0.7rem;
   margin-bottom: -2%;
 }
 
