@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import CadastrarClienteController from "../controllers/cadastrar-cliente-controller";
 import HttpResponse from "../utils/helpers/htttp-response";
 import { iCadastrarClienteService, iEmailValidator } from "../utils/interfaces";
