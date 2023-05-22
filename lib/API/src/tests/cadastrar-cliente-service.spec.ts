@@ -39,7 +39,7 @@ describe("Cadastrar Usuário Service", () => {
 				return this.userCreate;
 			}
 
-			async getUserByEmail(email: string): Promise<Omit<User, "password"> | undefined> {
+			async getUserByEmail(email: string, includePassword: boolean): Promise<Omit<User, "password"> | undefined> {
 				return this.userGet;
 			}
 		}

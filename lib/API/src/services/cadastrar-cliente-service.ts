@@ -18,7 +18,7 @@ export default class CadastrarClienteService implements iCadastrarClienteService
 		if(!this.encrypter || !this.encrypter.crypt)
 			throw new InvalidDependencyError("Encrypter");
 
-		if(await this.userRepository.getUserByEmail(email))
+		if(await this.userRepository.getUserByEmail(email, false))
 			return undefined;
 
 		const user = await this.userRepository.createUser({

@@ -22,7 +22,7 @@ class UserRepository implements iUserRepository {
 		};
 	}
 
-	async getUserByEmail(email: string): Promise<Omit<User, "password"> | undefined> {
+	async getUserByEmail(email: string, includePassword: boolean): Promise<Omit<User, "password"> | undefined> {
 		const user = await prisma.user.findUnique({
 			where: {email:email}
 		});
@@ -30,13 +30,16 @@ class UserRepository implements iUserRepository {
 		if(!user)
 			return undefined;
 
-		return {
-			name: user.name,
-			email: user.email,
-			profile: user.profile,
-			phone: user.phone,
-			id: user.id
-		};
+		if(includePassword)
+			return user;
+		else
+			return {
+				name: user.name,
+				email: user.email,
+				profile: user.profile,
+				phone: user.phone,
+				id: user.id
+			};
 	}
 }
 
