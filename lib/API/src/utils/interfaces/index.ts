@@ -5,6 +5,7 @@ import iUserRepository from "./iUserRepository";
 import iEncrypter from "./iEncrypter";
 import iController from "./iController";
 import iLoginService from "./iLoginService";
+import iCadastrarFuncionarioService from "./iCadastrarFuncionarioService";
 
 
 
@@ -15,5 +16,6 @@ export {
 	iTokenManager,
 	iEncrypter,
 	iController,
-	iLoginService
+	iLoginService,
+	iCadastrarFuncionarioService
 };

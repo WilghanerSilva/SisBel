@@ -1,8 +1,7 @@
-import { User } from "@prisma/client";
 import CadastrarClienteService from "../services/cadastrar-cliente-service";
 import { iEncrypter, iTokenManager, iUserRepository } from "../utils/interfaces";
-import { CreateUserData } from "../utils/types/user-types";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
+import { User, CreateClienteData, CreateFuncionarioData } from "../utils/types/user-types";
 
 
 
@@ -25,22 +24,29 @@ describe("Cadastrar Usuário Service", () => {
 
 	const makeUserRepositorySpy = () => {
 		class UserRepositorySpy implements iUserRepository {
-			public userCreate: Omit<User, "password"> | undefined = {
+			public userCreate: User | undefined = {
 				id: "any_id",
 				name: "any_name",
 				email: "any_email@mail.com",
-				phone: "8840028922",
 				profile: "cliente",
 			};
 
 			public userGet: Omit<User, "password"> | undefined = undefined;
     
-			async createUser( data: CreateUserData ): Promise<Omit<User, "password"> | undefined> {
+			async createCliente( data: CreateClienteData ): Promise<User | undefined> {
 				return this.userCreate;
 			}
 
 			async getUserByEmail(email: string, includePassword: boolean): Promise<Omit<User, "password"> | undefined> {
 				return this.userGet;
+			}
+
+			async createFuncionario(data: CreateFuncionarioData): Promise<User | undefined> {
+				return undefined;
+			}
+
+			async getUserById(id: string): Promise<User | undefined> {
+				return undefined;
 			}
 		}
 
@@ -148,7 +154,6 @@ describe("Cadastrar Usuário Service", () => {
 			id: "any_id",
 			email: "any_email",
 			profile: "cliente",
-			phone: "8840028922"
 		};
 
 		const result = await sut.cadastrar(

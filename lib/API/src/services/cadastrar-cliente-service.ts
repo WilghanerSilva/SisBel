@@ -9,7 +9,7 @@ export default class CadastrarClienteService implements iCadastrarClienteService
 	){}
   
 	async cadastrar(email: string, name: string, phone: string, password: string): Promise<string | undefined> {
-		if(!this.userRepository || !this.userRepository.createUser || !this.userRepository.getUserByEmail)
+		if(!this.userRepository || !this.userRepository.createCliente || !this.userRepository.getUserByEmail)
 			throw new InvalidDependencyError("UserRepository");
     
 		if(!this.tokenManager || !this.tokenManager.generate)
@@ -21,12 +21,12 @@ export default class CadastrarClienteService implements iCadastrarClienteService
 		if(await this.userRepository.getUserByEmail(email, false))
 			return undefined;
 
-		const user = await this.userRepository.createUser({
-			email,
-			name, 
-			phone,
-			password: await this.encrypter.crypt(password),
-			profile: "cliente"
+		const user = await this.userRepository.createCliente({
+			nome: name,
+			email, 
+			telefone: phone,
+			senha: await this.encrypter.crypt(password),
+			perfil: "cliente"
 		});
 
 		if(!user)

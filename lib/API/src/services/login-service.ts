@@ -1,6 +1,6 @@
-import { User } from "@prisma/client";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import { iEncrypter, iLoginService, iTokenManager, iUserRepository } from "../utils/interfaces";
+import { UserWithPassword } from "../utils/types/user-types";
 
 class LoginService implements iLoginService {
 	constructor(
@@ -24,7 +24,7 @@ class LoginService implements iLoginService {
 		if(!user)
 			return "";
     
-		const userWithPassword = user as User;
+		const userWithPassword = user as UserWithPassword;
 
 		const passwordIsValid = await this.encrypter.compare(
 			password,

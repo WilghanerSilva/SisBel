@@ -10,29 +10,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id                   String        @id @default(uuid())
-  name                 String
-  email                String        @unique
-  profile              String
-  password             String
-  phone                String?
-  services             Services[]
-  EmployeeAppointments Appointment[] @relation(name: "EmployeeAppointments")
-  CustomerAppointments Appointment[] @relation(name: "CustomerAppointments")
+model Cliente {
+  id           String         @id @default(uuid())
+  nome         String
+  email        String         @unique
+  perfil       String
+  senha        String
+  telefone     String
+  agendamentos Agendamentos[]
 }
 
-model Appointment {
-  id         String   @id @default(uuid())
-  date       DateTime
-  employee   User     @relation(fields: [employeeId], references: [id], name: "EmployeeAppointments")
-  employeeId String
-  customer   User     @relation(fields: [customerId], references: [id], name: "CustomerAppointments")
-  customerId String
+model Funcionario {
+  id           String         @id @default(uuid())
+  nome         String
+  email        String         @unique
+  perfil       String
+  senha        String
+  telefone     String
+  cpf          String
+  servicos     Servicos[]
+  agendamentos Agendamentos[]
 }
 
-model Services {
-  id        String @id @default(uuid())
-  name      String
-  employees User[]
+model Admin {
+  id     String @id @default(uuid())
+  nome   String
+  email  String @unique
+  perfil String
+  senha  String
+}
+
+model Agendamentos {
+  id            String      @id @default(uuid())
+  date          DateTime
+  funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
+  funcionarioId String
+  cliente       Cliente?    @relation(fields: [clienteId], references: [id])
+  clienteId     String?
+}
+
+model Servicos {
+  id           String        @id @default(uuid())
+  nome         String
+  funcionarios Funcionario[]
 }

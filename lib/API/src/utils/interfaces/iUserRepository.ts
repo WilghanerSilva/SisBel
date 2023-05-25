@@ -1,10 +1,13 @@
-import { User } from "@prisma/client";
-import { CreateUserData } from "../types/user-types";
+import { CreateClienteData, UserWithPassword, User, CreateFuncionarioData} from "../types/user-types";
 
 interface iUserRepository {
-  getUserByEmail(email: string, includePassword: boolean): Promise<Omit<User, "password"> | User |undefined>
+  getUserByEmail(email: string, includePassword: boolean): Promise<User | UserWithPassword |undefined>
 
-  createUser(data: CreateUserData ): Promise<Omit<User, "password"> | undefined> 
+  createCliente(data: CreateClienteData ): Promise<User | undefined>
+
+  createFuncionario(data: CreateFuncionarioData ): Promise<User | undefined> 
+
+  getUserById(id: string): Promise<User | undefined>;
 }
 
 export default iUserRepository;

@@ -1,14 +1,34 @@
 export type User = {
+  id: string,
   name: string,
   email: string,
-  password?: string,
-  phone: string
+  profile: string
 }
 
-export type CreateUserData = {
-  email: string,
+export type UserWithPassword = {
+  id: string,
   name: string,
-  phone: string,
-  password: string,
-  profile: string
+  email: string,
+  profile: string,
+  password: string
+}
+
+
+export type CreateClienteData = {
+  email: string,
+  nome: string,
+  telefone: string,
+  senha: string,
+  perfil: string
+}
+
+export type CreateFuncionarioData = {
+  nome: string,
+  email: string,
+  senha: string,
+  telefone: string,
+  dataNascimento: string,
+  cpf: string,
+  endereco: string,
+  cidade: string
 }
