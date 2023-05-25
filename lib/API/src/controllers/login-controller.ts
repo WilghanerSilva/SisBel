@@ -27,7 +27,7 @@ class LoginController implements iController {
 			
 			const token = await this.loginService.auth(email, password);
       
-			console.log(!token);  
+			console.log(!token); 
 
 			if(!token)
 				return HttpResponse.unauthorized("Senha ou email errados");

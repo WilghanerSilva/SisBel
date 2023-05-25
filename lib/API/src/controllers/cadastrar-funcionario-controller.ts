@@ -85,6 +85,7 @@ class CadastrarFuncionarioController implements iController {
 			return HttpResponse.ok({});
 
 		} catch (error) {
+			console.error(error);
 			return HttpResponse.serverError();
 		}
 

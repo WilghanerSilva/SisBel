@@ -41,8 +41,8 @@ class CadastrarFuncionarioService implements iCadastrarFuncionarioService{
 				nome: funcData.name,
 				endereco: funcData.adress,
 				telefone: funcData.phone,
-				senha: await this.encrypter.crypt(funcData.password)
-
+				senha: await this.encrypter.crypt(funcData.password),
+				perfil: "funcionario"
 			}
 		);
 

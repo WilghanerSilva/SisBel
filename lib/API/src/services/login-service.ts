@@ -21,8 +21,10 @@ class LoginService implements iLoginService {
 
 		const user = await this.userRepository.getUserByEmail(email, true);
 
-		if(!user)
+		if(!user){
+			console.log(user);
 			return "";
+		}
     
 		const userWithPassword = user as UserWithPassword;
 

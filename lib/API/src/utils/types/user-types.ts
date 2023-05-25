@@ -30,5 +30,6 @@ export type CreateFuncionarioData = {
   dataNascimento: string,
   cpf: string,
   endereco: string,
-  cidade: string
+  cidade: string,
+  perfil: string,
 }

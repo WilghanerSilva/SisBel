@@ -21,15 +21,18 @@ model Cliente {
 }
 
 model Funcionario {
-  id           String         @id @default(uuid())
-  nome         String
-  email        String         @unique
-  perfil       String
-  senha        String
-  telefone     String
-  cpf          String
-  servicos     Servicos[]
-  agendamentos Agendamentos[]
+  id             String         @id @default(uuid())
+  nome           String
+  email          String         @unique
+  perfil         String
+  senha          String
+  telefone       String
+  cpf            String
+  endereco       String
+  cidade         String
+  dataNascimento String
+  servicos       Servicos[]
+  agendamentos   Agendamentos[]
 }
 
 model Admin {

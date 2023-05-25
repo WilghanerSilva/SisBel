@@ -8,7 +8,7 @@ const authMiddleware = new AuthMiddleware(tokenManager);
 
 
 class MiddlewareAdapter {
-	static adapt(req: Request, res: Response, next: (req: Request, res: Response) => Promise<void>){
+	static adapt(req: Request, res: Response, next:()=>void){
     
 		const httpRequest : HttpReq = {
 			body: req.body,
@@ -19,7 +19,7 @@ class MiddlewareAdapter {
 
 		if(typeof result === "string") {
 			req.headers.userId = result;
-			next(req, res);
+			next();
 		}else {
 			res.status(result.statusCode).send(result.body);
 		}
