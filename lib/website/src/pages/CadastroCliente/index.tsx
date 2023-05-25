@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import api from "../../services/api";
 import AuthContext from "../../contexts/auth";
 import InputMask from "react-input-mask";
+import { useNavigate } from "react-router-dom";
 
 
 function CadastroCliente () {
@@ -16,12 +17,17 @@ function CadastroCliente () {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const context = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const changeInputHandle = (
     event: React.ChangeEvent<HTMLInputElement>,
     setState: React.Dispatch<React.SetStateAction<string>>
   ) => {
     setState(event.target.value);
+  }
+
+  const handleNavigate = () => {
+    navigate("/");
   }
 
   const validateEmail = (email: string) => {
@@ -187,7 +193,7 @@ function CadastroCliente () {
           <div className="buttons-container">
             <button id="cadastre-se" onClick={submitForm}>Cadastre-se</button>
             <p>ou então</p>
-            <button id="entrar">Entrar</button>
+            <button id="entrar" onClick={handleNavigate}>Entrar</button>
           </div>
         </div>
       </div>
