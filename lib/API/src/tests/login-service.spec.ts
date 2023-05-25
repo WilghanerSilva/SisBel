@@ -1,8 +1,7 @@
-import { User } from "@prisma/client";
 import LoginService from "../services/login-service";
 import { iEncrypter, iTokenManager, iUserRepository } from "../utils/interfaces";
-import { CreateUserData } from "../utils/types/user-types";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
+import { CreateFuncionarioData, User, UserWithPassword } from "../utils/types/user-types";
 
 describe("LoginService", () => {
 	const makeTokenManagerSpy = () => {
@@ -39,24 +38,29 @@ describe("LoginService", () => {
 
 	const makeUserRepositorySpy = () => {
 		class UserRepositorySpy implements iUserRepository {
-			public userCreate: Omit<User, "password"> | undefined = undefined;
-
-			public userGet: Omit<User, "password"> | undefined | User = {
+			public userGet: User| UserWithPassword | undefined = {
 				id: "any_id",
 				name: "any_name",
 				email: "any_email@mail.com",
-				phone: "8840028922",
 				profile: "cliente",
 				password: "any_password"
 			};
     
-			async createUser( data: CreateUserData ): Promise<Omit<User, "password"> | undefined> {
-				return this.userCreate;
+			async createCliente(): Promise<Omit<User, "password"> | undefined> {
+				return undefined;
+			}
+
+			async createFuncionario(data: CreateFuncionarioData): Promise<User | undefined> {
+				return undefined;
 			}
 
 			async getUserByEmail(email: string, includesPassword: boolean): Promise<Omit<User, "password"> | undefined | User> {
 
 				return this.userGet;
+			}
+
+			async getUserById(id: string): Promise<User | undefined> {
+				return undefined;
 			}
 		}
 
