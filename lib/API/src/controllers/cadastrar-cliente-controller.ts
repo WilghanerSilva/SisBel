@@ -40,7 +40,7 @@ class CadastrarClienteCTER {
 			if(!result)
 				return HttpResponse.unauthorized("O email fornecido já foi cadastrado");
 	
-			return HttpResponse.ok({data:result});
+			return HttpResponse.ok({...result});
 
 		} catch (error) {
 			return HttpResponse.serverError();

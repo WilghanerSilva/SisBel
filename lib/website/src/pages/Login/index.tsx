@@ -59,8 +59,11 @@ function Login () {
           Accept: '',
         }
       }).then(response => {
-        localStorage.setItem("@Sisbel:token", response.data.data.token);
-        context.setToken(response.data.data.token);
+        const {data} = response.data;
+        localStorage.setItem("@Sisbel:token", data.token);
+        localStorage.setItem("@Sisbel:profile", data.profile);
+        context.setToken(data.token);
+        context.setProfile(data.profile)
         context.setSigned(true);
       }).catch(err => {
         console.log(err)

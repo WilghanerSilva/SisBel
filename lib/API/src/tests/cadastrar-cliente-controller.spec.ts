@@ -274,7 +274,7 @@ describe("Cadastrar Cliente Controller", () => {
 		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(200);
-		expect(httpResponse.body).toEqual(HttpResponse.ok({data:cadastrarClienteSVCSpy.cadastrarResult}).body);
+		expect(httpResponse.body).toEqual(HttpResponse.ok({...cadastrarClienteSVCSpy.cadastrarResult}).body);
 	});
 
 });

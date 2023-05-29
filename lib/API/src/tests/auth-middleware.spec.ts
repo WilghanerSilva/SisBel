@@ -118,8 +118,6 @@ describe("Auth Middleware", () => {
 
 		const userId = sut.verifyToken(httpReq);
 
-		console.log(userId);
-
 		expect(typeof userId === "string").toBe(true);
 	});
 

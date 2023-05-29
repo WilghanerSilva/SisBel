@@ -31,7 +31,7 @@ class LoginCTER implements iController {
 			if(!result)
 				return HttpResponse.unauthorized("Senha ou email errados");
 
-			return HttpResponse.ok({result});  
+			return HttpResponse.ok({...result});  
 		} catch (error) {
 			return HttpResponse.serverError();
 		}
