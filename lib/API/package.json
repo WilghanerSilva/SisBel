@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "tsc -p ./tsconfig.json",
-    "build:run": "node ./dist/index.js",
+    "build:run": "node ./dist/src/index.js",
     "dev:server": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
