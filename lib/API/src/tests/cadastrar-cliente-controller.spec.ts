@@ -22,10 +22,13 @@ describe("Cadastrar Cliente Controller", () => {
 
 	const makeCadastrarClienteSVCSpy = () => {
 		class CadastrarClienteSVCSpy implements iCadastrarClienteService {
-			public token = "valid_token";
+			public cadastrarResult : {profile: string, token: string} | null = {
+				profile: "any_profile",
+				token: "any_token"
+			};
 
-			async cadastrar(email: string, name: string, phone: string, password: string): Promise<string | undefined> {
-				return this.token;
+			async cadastrar(email: string, name: string, phone: string, password: string): Promise<{profile: string, token: string}| null> {
+				return this.cadastrarResult;
 			}
 		}
 
@@ -237,7 +240,7 @@ describe("Cadastrar Cliente Controller", () => {
 	test("É esperado que retorne 401 caso cadastrarClienteService retorne nulo", async () => {
 		const {sut, cadastrarClienteSVCSpy} = makeSut();
 
-		cadastrarClienteSVCSpy.token = "";
+		cadastrarClienteSVCSpy.cadastrarResult = null;
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -271,7 +274,7 @@ describe("Cadastrar Cliente Controller", () => {
 		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(200);
-		expect(httpResponse.body).toEqual(HttpResponse.ok({token: cadastrarClienteSVCSpy.token}).body);
+		expect(httpResponse.body).toEqual(HttpResponse.ok({data:cadastrarClienteSVCSpy.cadastrarResult}).body);
 	});
 
 });

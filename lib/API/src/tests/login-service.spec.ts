@@ -38,7 +38,7 @@ describe("Login Service", () => {
 
 	const makeUserRepositorySpy = () => {
 		class UserRepositorySpy implements iUserRepository {
-			public userGet: User| UserWithPassword | undefined = {
+			public userGetResult: User| UserWithPassword | undefined = {
 				id: "any_id",
 				name: "any_name",
 				email: "any_email@mail.com",
@@ -56,7 +56,7 @@ describe("Login Service", () => {
 
 			async getUserByEmail(): Promise<Omit<User, "password"> | undefined | User> {
 
-				return this.userGet;
+				return this.userGetResult;
 			}
 
 			async getUserById(): Promise<User | undefined> {
@@ -131,32 +131,35 @@ describe("Login Service", () => {
 			.rejects.toThrow(new InvalidDependencyError("TokenManager"));
 	});
 	
-	test("É esperado que retorne uma string vazia caso as senha esteja incorreta", async () => {
+	test("É esperado que retorne null caso as senha esteja incorreta", async () => {
 		const {sut, encrypter} = makeSut();
 
 		encrypter.compareResult = false;
 
 		const token = await sut.auth("any_email@mail.com", "invalid_password");
 
-		expect(token).toEqual("");
+		expect(token).toBeNull();
 	});
 
-	test("É esperado que retorne uma string vazia caso não exista um usuário com o email fornecido", async () => {
+	test("É esperado que retorne null caso não exista um usuário com o email fornecido", async () => {
 		const {sut, userRepository} = makeSut();
 
-		userRepository.userGet = undefined;
+		userRepository.userGetResult = undefined;
 
 		const token = await sut.auth("invalid_email@mail.com", "any_password");
 
-		expect(token).toEqual("");
+		expect(token).toBeNull();
 	});
 
-	test("É esperado que retorne o token caso tudo ocorra bem", async () => {
-		const {sut, tokenManager} = makeSut();
+	test("É esperado que retorne o token e o perfil caso tudo ocorra bem", async () => {
+		const {sut, tokenManager, userRepository} = makeSut();
 
-		const token = await sut.auth("valid_email@mail.com", "valid_password");
+		const result = await sut.auth("valid_email@mail.com", "valid_password");
 
-		expect(token).toBe(tokenManager.token);
+		expect(result).toEqual({
+			profile: userRepository.userGetResult?.profile,
+			token: tokenManager.token
+		});
 	});
 
 });

@@ -9,7 +9,7 @@ class LoginSVC implements iLoginService {
     private  tokenManager: iTokenManager
 	){}
 
-	async auth(email: string, password: string): Promise<string> {
+	async auth(email: string, password: string): Promise<{profile: string, token: string} | null> {
 		if(!this.userRepository || !this.userRepository.getUserByEmail)
 			throw new InvalidDependencyError("UserService");
 
@@ -22,8 +22,7 @@ class LoginSVC implements iLoginService {
 		const user = await this.userRepository.getUserByEmail(email, true);
 
 		if(!user){
-			console.log(user);
-			return "";
+			return null;
 		}
     
 		const userWithPassword = user as UserWithPassword;
@@ -34,9 +33,9 @@ class LoginSVC implements iLoginService {
 		);
 
 		if(!passwordIsValid)
-			return "";
+			return null;
 
-		const token = this.tokenManager.generate(user.id);
+		const token = {profile: user.profile, token: this.tokenManager.generate(user.id)};
 
 		return token;
 	}

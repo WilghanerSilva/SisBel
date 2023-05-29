@@ -30,20 +30,19 @@ class CadastrarClienteCTER {
 			if(!this.emailValidator.validateEmail(email))
 				return HttpResponse.unauthorized("O email fornecido é invalido");
 
-			const token = await this.cadastrarClienteSVC.cadastrar(
+			const result = await this.cadastrarClienteSVC.cadastrar(
 				email,
 				name,
 				phone,
 				password
 			);
       
-			if(!token)
+			if(!result)
 				return HttpResponse.unauthorized("O email fornecido já foi cadastrado");
 	
-			return HttpResponse.ok({token});
+			return HttpResponse.ok({data:result});
 
 		} catch (error) {
-			console.error(error);
 			return HttpResponse.serverError();
 		}
 	}

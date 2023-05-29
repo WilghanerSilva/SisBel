@@ -25,14 +25,13 @@ class LoginCTER implements iController {
 			if(!this.emailValidator.validateEmail(email))
 				return HttpResponse.unauthorized("O email fornecido é inválido");
 			
-			const token = await this.loginSVC.auth(email, password);
+			const result = await this.loginSVC.auth(email, password);
       
-			console.log(!token); 
 
-			if(!token)
+			if(!result)
 				return HttpResponse.unauthorized("Senha ou email errados");
 
-			return HttpResponse.ok({token});  
+			return HttpResponse.ok({result});  
 		} catch (error) {
 			return HttpResponse.serverError();
 		}

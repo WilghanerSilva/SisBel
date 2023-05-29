@@ -118,10 +118,12 @@ describe("Auth Middleware", () => {
 
 		const userId = sut.verifyToken(httpReq);
 
+		console.log(userId);
+
 		expect(typeof userId === "string").toBe(true);
 	});
 
-	test("should pass the parameters correctly to the TokenManager", () => {
+	test("É esperado que passe os parâmetros corretamente para o token manager", () => {
 		const { sut, tokenManager} = makeSut();
 
 		const httpReq = {

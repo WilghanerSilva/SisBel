@@ -1,4 +1,4 @@
-import React, { ReactNode, createContext, useState} from "react";
+import React, { ReactNode, createContext, useEffect, useState} from "react";
 
 interface AuthContextData {
   signed: boolean
@@ -17,6 +17,15 @@ export const AuthProvider: React.FC<{children : ReactNode}> = ({children}: {chil
   const [token, setToken] = useState("");
   const [signed, setSigned] = useState(false);
   const [profile, setProfile] = useState("");
+
+  useEffect(() => {
+    const storagedToken = localStorage.getItem('@Sisbel:token');
+
+    if(storagedToken){
+      setToken(storagedToken);
+      setSigned(true);
+    }
+  }, []);
   
   return (
     <AuthContext.Provider value={

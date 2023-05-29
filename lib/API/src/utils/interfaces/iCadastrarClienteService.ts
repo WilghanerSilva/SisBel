@@ -1,7 +1,5 @@
-import { User } from "../types/user-types";
-
 interface iCadastrarClienteService {
-  cadastrar(email: string, name: string, phone: string, password: string): Promise<string | undefined>
+  cadastrar(email: string, name: string, phone: string, password: string): Promise<{profile: string, token: string} | null>
 }
 
 export default iCadastrarClienteService;

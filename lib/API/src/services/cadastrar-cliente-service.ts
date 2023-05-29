@@ -8,7 +8,7 @@ class CadastrarClienteSVC implements iCadastrarClienteService {
     private encrypter: iEncrypter  
 	){}
   
-	async cadastrar(email: string, name: string, phone: string, password: string): Promise<string | undefined> {
+	async cadastrar(email: string, name: string, phone: string, password: string): Promise<{profile: string, token: string} | null> {
 		if(!this.userRepository || !this.userRepository.createCliente || !this.userRepository.getUserByEmail)
 			throw new InvalidDependencyError("UserRepository");
     
@@ -19,7 +19,7 @@ class CadastrarClienteSVC implements iCadastrarClienteService {
 			throw new InvalidDependencyError("Encrypter");
 
 		if(await this.userRepository.getUserByEmail(email, false))
-			return undefined;
+			return null;
 
 		const user = await this.userRepository.createCliente({
 			nome: name,
@@ -32,7 +32,10 @@ class CadastrarClienteSVC implements iCadastrarClienteService {
 		if(!user)
 			throw new Error("An error occurred while creating the user");
 
-		return this.tokenManager.generate(user.id);
+		return {
+			profile: user.profile,
+			token: this.tokenManager.generate(user.id)
+		};
 	}
 }
 

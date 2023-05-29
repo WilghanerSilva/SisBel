@@ -5,7 +5,7 @@ import { User} from "../utils/types/user-types";
 
 
 
-describe("Cadastrar Usuário Service", () => {
+describe("Cadastrar Cliente Service", () => {
 	const makeEncrypterSpy = () => {
 		class EncrypterSpy implements iEncrypter {
 			public encryptedPassword = "any_password";
@@ -146,7 +146,7 @@ describe("Cadastrar Usuário Service", () => {
 		).rejects.toThrow(new InvalidDependencyError("Encrypter"));
 	});
 
-	test("É esperado que retorne undefined caso já exista uma conta com o email fornecido", async () => {
+	test("É esperado que retorne null caso já exista uma conta com o email fornecido", async () => {
 		const {userRepository, sut} = makeSut();
 
 		userRepository.getByEmailResult = {
@@ -163,7 +163,7 @@ describe("Cadastrar Usuário Service", () => {
 			"any_password"
 		);
 
-		expect(result).toBeUndefined();
+		expect(result).toBeNull();
 	});
 
 	test("É esperado que lance um erro caso a função createUser retorne undefined", async () => {
@@ -180,7 +180,7 @@ describe("Cadastrar Usuário Service", () => {
 	});
 
 	test("É esperado que retorne o token corretamente caso tudo ocorra bem", async () => {
-		const {sut, tokenManager} = makeSut();
+		const {sut, tokenManager, userRepository} = makeSut();
 
 		const result = await sut.cadastrar(
 			"any_email@mail.com", 
@@ -189,6 +189,9 @@ describe("Cadastrar Usuário Service", () => {
 			"any_password"
 		);
 
-		expect(result).toBe(tokenManager.token);
+		expect(result).toEqual({
+			profile: userRepository.clientCreateResult?.profile,
+			token: tokenManager.token
+		});
 	});
 });

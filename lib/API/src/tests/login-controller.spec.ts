@@ -8,7 +8,7 @@ describe("Login Controller", () => {
   
 	const makeLoginSVCSpy = () => {
 		class LoginSVCSpy implements iLoginService {
-			public token = "any_token";
+			public token: {profile: string, token: string} | null = {profile: "any_profile", token: "any_token"};
       
 			async auth() {
 				return this.token;
@@ -175,7 +175,7 @@ describe("Login Controller", () => {
 	test("É esperado que retorne 401 caso o LoginService não retorne nada", async () => {
 		const {sut, loginService} = makeSut();
 
-		loginService.token = "";
+		loginService.token = null;
 
 		const httpRequest: HttpReq = {
 			body: {
