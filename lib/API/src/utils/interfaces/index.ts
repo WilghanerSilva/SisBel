@@ -6,6 +6,8 @@ import iEncrypter from "./iEncrypter";
 import iController from "./iController";
 import iLoginService from "./iLoginService";
 import iCadastrarFuncionarioService from "./iCadastrarFuncionarioService";
+import iCadastrarServicoService from "./iCadastrarServicoService";
+import iServicoRepository from "./iServicoRepository";
 
 
 
@@ -17,5 +19,7 @@ export {
 	iEncrypter,
 	iController,
 	iLoginService,
-	iCadastrarFuncionarioService
+	iCadastrarFuncionarioService,
+	iCadastrarServicoService,
+	iServicoRepository
 };

@@ -54,6 +54,8 @@ model Agendamentos {
 
 model Servicos {
   id           String        @id @default(uuid())
-  nome         String
+  nome         String        @unique
+  publico      String
+  categoria    String
   funcionarios Funcionario[]
 }
