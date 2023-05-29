@@ -3,8 +3,8 @@ import MissingParamError from "../erros/missingparam-error";
 import jwt from "jsonwebtoken";
 import * as fs from "fs";
 
-const publicKey = fs.readFileSync("src/keys/public.key", "utf8");
-const privateKey = fs.readFileSync("src/keys/private.key", "utf8");
+const publicKey = fs.readFileSync("../../secrets/public.key", "utf8");
+const privateKey = fs.readFileSync("../../secrets/private.key", "utf8");
 
 export default class TokenManager implements iTokenManager{
 	generate(userId: string): string {
