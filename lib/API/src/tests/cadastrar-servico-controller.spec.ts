@@ -1,13 +1,13 @@
-import CadastrarServicoControler from "../controllers/cadastrar-servico-controller";
+import CadastrarServicoCTER from "../controllers/cadastrar-servico-controller";
 import HttpResponse from "../utils/helpers/htttp-response";
 import { iCadastrarServicoService } from "../utils/interfaces";
 import { HttpReq } from "../utils/types/http-types";
 
 describe("Cadastrar Serviço Controller", () => {
-	const makeCadastrarServicoServiceSpy = () => {
+	const makeCadastrarServicoSVCSpy = () => {
 		class CadastrarServicoServSpy implements iCadastrarServicoService {
 			public result = true;
-			async cadastrar(adminId: string, nome: string, publico: string, categoria: string): Promise<boolean> {
+			async cadastrar(): Promise<boolean> {
 				return this.result;
 			}
 		}
@@ -16,15 +16,15 @@ describe("Cadastrar Serviço Controller", () => {
 	};
 
 	const makeSut = () => {
-		const cadastrarServicoServ = makeCadastrarServicoServiceSpy();
-		const sut = new CadastrarServicoControler(cadastrarServicoServ);
+		const cadastrarServicoServ = makeCadastrarServicoSVCSpy();
+		const sut = new CadastrarServicoCTER(cadastrarServicoServ);
 
 		return {sut, cadastrarServicoServ};
 	};
 
 	test("É esperado que retorne 500 caso o service seja inválido", async () => {
 		const invalidCadastrarServiceServ = {} as iCadastrarServicoService;
-		const sut = new CadastrarServicoControler(
+		const sut = new CadastrarServicoCTER(
 			invalidCadastrarServiceServ
 		);
 
@@ -149,7 +149,7 @@ describe("Cadastrar Serviço Controller", () => {
 			cadastrar: () => {throw new Error();}
 		} as iCadastrarServicoService;
 
-		const sut = new CadastrarServicoControler(serviceWithError);
+		const sut = new CadastrarServicoCTER(serviceWithError);
 
 		const httpRequest: HttpReq = {
 			body: {

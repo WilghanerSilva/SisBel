@@ -1,5 +1,5 @@
-import CadastrarClienteController from "../controllers/cadastrar-cliente-controller";
-import CadastrarClienteService from "../services/cadastrar-cliente-service";
+import CadastrarClienteCTER from "../controllers/cadastrar-cliente-controller";
+import CadastrarClienteSVC from "../services/cadastrar-cliente-service";
 import EmailValidator from "../utils/helpers/email-validator";
 import UserRepository from "../repositories/user-repository";
 import Encrypter from "../utils/helpers/encrypter";
@@ -15,15 +15,15 @@ class CadastrarClienteComposer {
 		const emailValdator = new EmailValidator();
 		const userRepository = new UserRepository();
 
-		const cadastrarClienteService = new CadastrarClienteService(
+		const cadastrarClienteSVC = new CadastrarClienteSVC(
 			userRepository,
 			tokenManager,
 			encrypter
 		);
 
-		return  new CadastrarClienteController(
+		return  new CadastrarClienteCTER(
 			emailValdator,
-			cadastrarClienteService
+			cadastrarClienteSVC
 		);
 	}
 }

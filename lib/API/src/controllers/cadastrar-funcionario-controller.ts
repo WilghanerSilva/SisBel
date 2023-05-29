@@ -2,10 +2,10 @@ import HttpResponse from "../utils/helpers/htttp-response";
 import { iController, iEmailValidator, iCadastrarFuncionarioService } from "../utils/interfaces";
 import { HttpReq, HttpRes } from "../utils/types/http-types";
 
-class CadastrarFuncionarioController implements iController {
+class CadastrarFuncionarioCTER implements iController {
 	constructor(
 		private emailValidator: iEmailValidator,
-		private cadastrarFuncionarioService: iCadastrarFuncionarioService,
+		private cadastrarFuncionarioSVC: iCadastrarFuncionarioService,
 	){}
 
 	async run(httpRequest: HttpReq): Promise<HttpRes> {
@@ -25,7 +25,7 @@ class CadastrarFuncionarioController implements iController {
 		if(!this.emailValidator || !this.emailValidator.validateEmail)
 			return HttpResponse.serverError();
     
-		if(!this.cadastrarFuncionarioService || !this.cadastrarFuncionarioService.cadastrar)
+		if(!this.cadastrarFuncionarioSVC || !this.cadastrarFuncionarioSVC.cadastrar)
 			return HttpResponse.serverError();
 
 		if(!name)
@@ -59,7 +59,7 @@ class CadastrarFuncionarioController implements iController {
 			if(!this.emailValidator.validateEmail(email))
 				return HttpResponse.unauthorized("Email inválido");
     
-			const serviceResult = await this.cadastrarFuncionarioService.cadastrar(
+			const serviceResult = await this.cadastrarFuncionarioSVC.cadastrar(
 				userId,
 				{
 					email,
@@ -93,4 +93,4 @@ class CadastrarFuncionarioController implements iController {
 	}
 }
 
-export default CadastrarFuncionarioController;
+export default CadastrarFuncionarioCTER;

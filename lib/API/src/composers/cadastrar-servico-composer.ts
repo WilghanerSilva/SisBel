@@ -1,4 +1,4 @@
-import CadastrarServicoControler from "../controllers/cadastrar-servico-controller";
+import CadastrarServicoCTER from "../controllers/cadastrar-servico-controller";
 import ServicoRepository from "../repositories/servico-repository";
 import UserRepository from "../repositories/user-repository";
 import CadastrarServicoSVC from "../services/cadastrar-servico-service";
@@ -10,11 +10,11 @@ class CadastrarServicoComposer {
 		const cadastrarServicoSVC = new CadastrarServicoSVC(
 			servicoRepository, userRepository
 		);
-		const cadastrarServicoController = new CadastrarServicoControler(
+		const cadastrarServicoCTER = new CadastrarServicoCTER(
 			cadastrarServicoSVC
 		);
 
-		return cadastrarServicoController;
+		return cadastrarServicoCTER;
 	}
 } 
 

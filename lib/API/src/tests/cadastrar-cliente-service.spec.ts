@@ -1,7 +1,7 @@
-import CadastrarClienteService from "../services/cadastrar-cliente-service";
+import CadastrarClienteSVC from "../services/cadastrar-cliente-service";
 import { iEncrypter, iTokenManager, iUserRepository } from "../utils/interfaces";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
-import { User, CreateClienteData, CreateFuncionarioData } from "../utils/types/user-types";
+import { User} from "../utils/types/user-types";
 
 
 
@@ -10,11 +10,11 @@ describe("Cadastrar Usuário Service", () => {
 		class EncrypterSpy implements iEncrypter {
 			public encryptedPassword = "any_password";
       
-			async crypt(password: string): Promise<string> {
+			async crypt(): Promise<string> {
 				return this.encryptedPassword;
 			}
 
-			async compare(password: string, hashedPassword: string): Promise<boolean> {
+			async compare(): Promise<boolean> {
 				return true;
 			}
 		}
@@ -24,28 +24,28 @@ describe("Cadastrar Usuário Service", () => {
 
 	const makeUserRepositorySpy = () => {
 		class UserRepositorySpy implements iUserRepository {
-			public userCreate: User | undefined = {
+			public clientCreateResult: User | undefined = {
 				id: "any_id",
 				name: "any_name",
 				email: "any_email@mail.com",
 				profile: "cliente",
 			};
 
-			public userGet: Omit<User, "password"> | undefined = undefined;
+			public getByEmailResult: Omit<User, "password"> | undefined = undefined;
     
-			async createCliente( data: CreateClienteData ): Promise<User | undefined> {
-				return this.userCreate;
+			async createCliente(): Promise<User | undefined> {
+				return this.clientCreateResult;
 			}
 
-			async getUserByEmail(email: string, includePassword: boolean): Promise<Omit<User, "password"> | undefined> {
-				return this.userGet;
+			async getUserByEmail(): Promise<Omit<User, "password"> | undefined> {
+				return this.getByEmailResult;
 			}
 
-			async createFuncionario(data: CreateFuncionarioData): Promise<User | undefined> {
+			async createFuncionario(): Promise<User | undefined> {
 				return undefined;
 			}
 
-			async getUserById(id: string): Promise<User | undefined> {
+			async getUserById(): Promise<User | undefined> {
 				return undefined;
 			}
 		}
@@ -57,11 +57,11 @@ describe("Cadastrar Usuário Service", () => {
 		class TokenManagerSpy implements iTokenManager {
 			public token = "any_token";
 		
-			verify(token: string): string | { userId: string; } {
+			verify(): string | { userId: string; } {
 				return this.token;
 			}
 
-			generate(userId: string): string {
+			generate(): string {
 				return this.token;
 			}
 		}
@@ -74,7 +74,7 @@ describe("Cadastrar Usuário Service", () => {
 		const tokenManager = makeTokenManagerSpy();
 		const encrypter = makeEncrypterSpy();
 		
-		const sut = new CadastrarClienteService(
+		const sut = new CadastrarClienteSVC(
 			userRepository, 
 			tokenManager,
 			encrypter
@@ -88,7 +88,7 @@ describe("Cadastrar Usuário Service", () => {
 		const tokenManager = makeTokenManagerSpy();
 		const encrypter = makeEncrypterSpy();
 
-		const sut = new CadastrarClienteService(
+		const sut = new CadastrarClienteSVC(
 			invalidUserRepository, 
 			tokenManager, 
 			encrypter
@@ -109,7 +109,7 @@ describe("Cadastrar Usuário Service", () => {
 		const encrypter = makeEncrypterSpy();
 		const tokenManager = {} as iTokenManager;
 
-		const sut = new CadastrarClienteService(
+		const sut = new CadastrarClienteSVC(
 			userRepository, 
 			tokenManager,
 			encrypter
@@ -130,7 +130,7 @@ describe("Cadastrar Usuário Service", () => {
 		const encrypter = {} as iEncrypter;
 		const tokenManager = makeTokenManagerSpy();
 
-		const sut = new CadastrarClienteService(
+		const sut = new CadastrarClienteSVC(
 			userRepository, 
 			tokenManager,
 			encrypter
@@ -149,7 +149,7 @@ describe("Cadastrar Usuário Service", () => {
 	test("É esperado que retorne undefined caso já exista uma conta com o email fornecido", async () => {
 		const {userRepository, sut} = makeSut();
 
-		userRepository.userGet = {
+		userRepository.getByEmailResult = {
 			name: "any_name",
 			id: "any_id",
 			email: "any_email",
@@ -169,7 +169,7 @@ describe("Cadastrar Usuário Service", () => {
 	test("É esperado que lance um erro caso a função createUser retorne undefined", async () => {
 		const {sut, userRepository} = makeSut();
     
-		userRepository.userCreate = undefined;
+		userRepository.clientCreateResult = undefined;
 
 		expect(sut.cadastrar(
 			"any_email@mail.com", 

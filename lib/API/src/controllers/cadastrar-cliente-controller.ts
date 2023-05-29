@@ -2,8 +2,8 @@ import { iEmailValidator, iCadastrarClienteService } from "../utils/interfaces";
 import { HttpReq} from "../utils/types/http-types";
 import HttpResponse from "../utils/helpers/htttp-response";
 
-class CadastrarClienteController {
-	constructor(private emailValidator: iEmailValidator, private cadastrarClienteService: iCadastrarClienteService){}
+class CadastrarClienteCTER {
+	constructor(private emailValidator: iEmailValidator, private cadastrarClienteSVC: iCadastrarClienteService){}
 
 	async run(httpRequest: HttpReq){
 		const {email, name, phone, password} = httpRequest.body;
@@ -11,7 +11,7 @@ class CadastrarClienteController {
 		if(!this.emailValidator || !this.emailValidator.validateEmail)
 			return HttpResponse.serverError();
 
-		if(!this.cadastrarClienteService || !this.cadastrarClienteService.cadastrar)
+		if(!this.cadastrarClienteSVC || !this.cadastrarClienteSVC.cadastrar)
 			return HttpResponse.serverError();
 
 		if(!email)
@@ -30,7 +30,7 @@ class CadastrarClienteController {
 			if(!this.emailValidator.validateEmail(email))
 				return HttpResponse.unauthorized("O email fornecido é invalido");
 
-			const token = await this.cadastrarClienteService.cadastrar(
+			const token = await this.cadastrarClienteSVC.cadastrar(
 				email,
 				name,
 				phone,
@@ -51,4 +51,4 @@ class CadastrarClienteController {
 
 
 
-export default CadastrarClienteController;
+export default CadastrarClienteCTER;

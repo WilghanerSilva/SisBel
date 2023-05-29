@@ -1,7 +1,7 @@
 import { iServicoRepository, iUserRepository } from "../utils/interfaces";
 import CadastrarServicoSVC from "../services/cadastrar-servico-service";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
-import { CreateFuncionarioData, User, UserWithPassword } from "../utils/types/user-types";
+import {User, UserWithPassword } from "../utils/types/user-types";
 import { Servicos } from "@prisma/client";
 
 describe("Cadastrar Servicos Service", () => {
@@ -27,16 +27,16 @@ describe("Cadastrar Servicos Service", () => {
 				return undefined;
 			}
 
-			async getUserByEmail(email: string, includesPassword: boolean): Promise<Omit<User, "password"> | undefined | User> {
+			async getUserByEmail(): Promise<Omit<User, "password"> | undefined | User> {
 
 				return this.userGet;
 			}
 
-			async createFuncionario(data: CreateFuncionarioData): Promise<User | undefined> {
+			async createFuncionario(): Promise<User | undefined> {
 				return this.funcionarioCreate;
 			}
 
-			async getUserById(id: string): Promise<User | undefined> {
+			async getUserById(): Promise<User | undefined> {
 				return this.getUserId;
 			}
 		}
@@ -55,11 +55,11 @@ describe("Cadastrar Servicos Service", () => {
 
 			public getResult : Servicos | null = null;
       
-			async create(data: { nome: string; publico: string; categoria: string; }): Promise<Servicos | undefined> {
+			async create(): Promise<Servicos | undefined> {
 				return this.createResult;
 			}
 
-			async getByName(name: string): Promise<Servicos | null> {
+			async getByName(): Promise<Servicos | null> {
 				return this.getResult;
 			}
 		}

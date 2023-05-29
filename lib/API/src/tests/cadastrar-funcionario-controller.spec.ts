@@ -1,15 +1,14 @@
-import CadastrarFuncionarioController from "../controllers/cadastrar-funcionario-controller";
+import CadastrarFuncionarioCTER from "../controllers/cadastrar-funcionario-controller";
 import HttpResponse from "../utils/helpers/htttp-response";
 import { iCadastrarFuncionarioService, iEmailValidator } from "../utils/interfaces";
-import { FuncData } from "../utils/interfaces/iCadastrarFuncionarioService";
 import { HttpReq } from "../utils/types/http-types";
 
-describe("CadastrarFuncionarioController", () => {
+describe("Cadastrar Funcionario Controller", () => {
 	const makeEmailValidatorSpy = () => {
 		class EmailValidatorSpy implements iEmailValidator {
 			public result = true;
 
-			validateEmail(email: string){
+			validateEmail(){
 				return this.result;
 			}
 		}
@@ -17,23 +16,23 @@ describe("CadastrarFuncionarioController", () => {
 		return new EmailValidatorSpy();
 	};
 
-	const makeCadastrarFuncionarioServiceSpy = () => {
-		class CadastrarFuncionarioServiceSpy implements iCadastrarFuncionarioService {
+	const makeCadastrarFuncionarioSVCSpy = () => {
+		class CadastrarFuncionarioSVCSpy implements iCadastrarFuncionarioService {
 			public result = "";
 
-			async cadastrar(adminId: string, funcData: FuncData): Promise<string> {
+			async cadastrar(): Promise<string> {
 				return this.result;
 			}
 		}
 
-		return new CadastrarFuncionarioServiceSpy();
+		return new CadastrarFuncionarioSVCSpy();
 	};
 
 	const makeSut = () => {
 		const emailValidator = makeEmailValidatorSpy();
-		const cadastrarFuncionarioService = makeCadastrarFuncionarioServiceSpy();
+		const cadastrarFuncionarioService = makeCadastrarFuncionarioSVCSpy();
 
-		const sut = new CadastrarFuncionarioController(
+		const sut = new CadastrarFuncionarioCTER(
 			emailValidator,
 			cadastrarFuncionarioService
 		);
@@ -48,9 +47,9 @@ describe("CadastrarFuncionarioController", () => {
 
 	test("É esperado que retorne 500 caso o EmailValidator seja inválido", async () => {
 		const invalidEmailValidator = {} as iEmailValidator;
-		const cadastrarFuncionarioService = makeCadastrarFuncionarioServiceSpy();
+		const cadastrarFuncionarioService = makeCadastrarFuncionarioSVCSpy();
 
-		const sut = new CadastrarFuncionarioController(
+		const sut = new CadastrarFuncionarioCTER(
 			invalidEmailValidator,
 			cadastrarFuncionarioService
 		);
@@ -80,7 +79,7 @@ describe("CadastrarFuncionarioController", () => {
 		const emailValidator = makeEmailValidatorSpy();
 		const invalidCadastrarFuncionarioService = {} as iCadastrarFuncionarioService;
 
-		const sut = new CadastrarFuncionarioController(
+		const sut = new CadastrarFuncionarioCTER(
 			emailValidator,
 			invalidCadastrarFuncionarioService
 		);
@@ -479,7 +478,7 @@ describe("CadastrarFuncionarioController", () => {
 		} as iCadastrarFuncionarioService;
 
 		const emailValidator = makeEmailValidatorSpy();
-		const sut = new CadastrarFuncionarioController(emailValidator, serviceWithError);
+		const sut = new CadastrarFuncionarioCTER(emailValidator, serviceWithError);
 
 		const httpRequest: HttpReq = {
 			body: {

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import CadastrarClienteController from "../controllers/cadastrar-cliente-controller";
+import CadastrarClienteCTER from "../controllers/cadastrar-cliente-controller";
 import HttpResponse from "../utils/helpers/htttp-response";
 import { iCadastrarClienteService, iEmailValidator } from "../utils/interfaces";
 import { HttpReq } from "../utils/types/http-types";
 
 
-describe("Cadatrar Cliente Controller", () => {
+describe("Cadastrar Cliente Controller", () => {
 
 	const makeEmailValidatorSpy = () => {
 		class EmailValidatorSpy implements iEmailValidator {
@@ -20,8 +20,8 @@ describe("Cadatrar Cliente Controller", () => {
 	};
 
 
-	const makeCadastrarClienteServiceSpy = () => {
-		class CadastrarClienteServiceSpy implements iCadastrarClienteService {
+	const makeCadastrarClienteSVCSpy = () => {
+		class CadastrarClienteSVCSpy implements iCadastrarClienteService {
 			public token = "valid_token";
 
 			async cadastrar(email: string, name: string, phone: string, password: string): Promise<string | undefined> {
@@ -29,19 +29,19 @@ describe("Cadatrar Cliente Controller", () => {
 			}
 		}
 
-		return new CadastrarClienteServiceSpy;
+		return new CadastrarClienteSVCSpy;
 	};
 
 
 	const makeSut = () => {
 		const emailValidatorSpy = makeEmailValidatorSpy();
-		const cadastrarClienteServiceSpy = makeCadastrarClienteServiceSpy();
+		const cadastrarClienteSVCSpy = makeCadastrarClienteSVCSpy();
 
-		const sut = new CadastrarClienteController(emailValidatorSpy, cadastrarClienteServiceSpy);
+		const sut = new CadastrarClienteCTER(emailValidatorSpy, cadastrarClienteSVCSpy);
 
 		return {
 			emailValidatorSpy, 
-			cadastrarClienteServiceSpy, 
+			cadastrarClienteSVCSpy, 
 			sut
 		};
 	};
@@ -124,9 +124,9 @@ describe("Cadatrar Cliente Controller", () => {
 
 	test("É esperado que retorne 500 caso o emailValidator seja invalido", async () => {
 		const invalidEmailValidator = {} as iEmailValidator;
-		const cadastrarClienteService = makeCadastrarClienteServiceSpy();
+		const cadastrarClienteService = makeCadastrarClienteSVCSpy();
 
-		const sut = new CadastrarClienteController(invalidEmailValidator, cadastrarClienteService);
+		const sut = new CadastrarClienteCTER(invalidEmailValidator, cadastrarClienteService);
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -147,7 +147,7 @@ describe("Cadatrar Cliente Controller", () => {
 		const emailValidator = makeEmailValidatorSpy();
 		const cadastrarClienteService = {} as iCadastrarClienteService;
 
-		const sut = new CadastrarClienteController(emailValidator, cadastrarClienteService);
+		const sut = new CadastrarClienteCTER(emailValidator, cadastrarClienteService);
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -169,9 +169,9 @@ describe("Cadatrar Cliente Controller", () => {
 			validateEmail : (email: string) => {throw new Error();}
 		} as iEmailValidator;
 
-		const cadastrarClienteServiceSpy = makeCadastrarClienteServiceSpy();
+		const cadastrarClienteSVCSpy = makeCadastrarClienteSVCSpy();
     
-		const sut = new CadastrarClienteController(emailValidatorWithError, cadastrarClienteServiceSpy);
+		const sut = new CadastrarClienteCTER(emailValidatorWithError, cadastrarClienteSVCSpy);
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -195,7 +195,7 @@ describe("Cadatrar Cliente Controller", () => {
         ( email: string, name: string, phone: string, password: string ) => { throw new Error();}
 		} as iCadastrarClienteService;
     
-		const sut = new CadastrarClienteController(emailValidator, cadastrarClienteServiceWithError);
+		const sut = new CadastrarClienteCTER(emailValidator, cadastrarClienteServiceWithError);
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -235,9 +235,9 @@ describe("Cadatrar Cliente Controller", () => {
 	});
 
 	test("É esperado que retorne 401 caso cadastrarClienteService retorne nulo", async () => {
-		const {sut, cadastrarClienteServiceSpy} = makeSut();
+		const {sut, cadastrarClienteSVCSpy} = makeSut();
 
-		cadastrarClienteServiceSpy.token = "";
+		cadastrarClienteSVCSpy.token = "";
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -256,7 +256,7 @@ describe("Cadatrar Cliente Controller", () => {
 	});
 
 	test("É esperado que retorne 200 e um token caso tudo esteja correto", async () => {
-		const {sut, cadastrarClienteServiceSpy} = makeSut();
+		const {sut, cadastrarClienteSVCSpy} = makeSut();
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -271,7 +271,7 @@ describe("Cadatrar Cliente Controller", () => {
 		const httpResponse = await sut.run(httpRequest);
 
 		expect(httpResponse.statusCode).toEqual(200);
-		expect(httpResponse.body).toEqual(HttpResponse.ok({token: cadastrarClienteServiceSpy.token}).body);
+		expect(httpResponse.body).toEqual(HttpResponse.ok({token: cadastrarClienteSVCSpy.token}).body);
 	});
 
 });

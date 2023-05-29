@@ -1,9 +1,9 @@
-import CadastrarFuncionarioService from "../services/cadastrar-funcionario-service";
+import CadastrarFuncionarioSVC from "../services/cadastrar-funcionario-service";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import { iUserRepository, iEncrypter } from "../utils/interfaces";
-import { CreateFuncionarioData, User, UserWithPassword } from "../utils/types/user-types";
+import { User, UserWithPassword } from "../utils/types/user-types";
 
-describe("Cadastrar Funcionário Service", () => {
+describe("Cadastrar Funcionario Service", () => {
 	const makeUserRepositorySpy = () => {
 		class UserRepositorySpy implements iUserRepository {
 			public userGet: User| UserWithPassword | undefined = undefined;
@@ -26,16 +26,16 @@ describe("Cadastrar Funcionário Service", () => {
 				return undefined;
 			}
 
-			async getUserByEmail(email: string, includesPassword: boolean): Promise<Omit<User, "password"> | undefined | User> {
+			async getUserByEmail(): Promise<Omit<User, "password"> | undefined | User> {
 
 				return this.userGet;
 			}
 
-			async createFuncionario(data: CreateFuncionarioData): Promise<User | undefined> {
+			async createFuncionario(): Promise<User | undefined> {
 				return this.funcionarioCreate;
 			}
 
-			async getUserById(id: string): Promise<User | undefined> {
+			async getUserById(): Promise<User | undefined> {
 				return this.getUserId;
 			}
 		}
@@ -47,11 +47,11 @@ describe("Cadastrar Funcionário Service", () => {
 		class EncrypterSpy implements iEncrypter {
 			public encryptedPassword = "any_password";
       
-			async crypt(password: string): Promise<string> {
+			async crypt(): Promise<string> {
 				return this.encryptedPassword;
 			}
 
-			async compare(password: string, hashedPassword: string): Promise<boolean> {
+			async compare(): Promise<boolean> {
 				return true;
 			}
 		}
@@ -62,7 +62,7 @@ describe("Cadastrar Funcionário Service", () => {
 	const makeSut = () => {
 		const userRepository = makeUserRepositorySpy();
 		const encrypter = makeEncrypterSpy();
-		const sut = new CadastrarFuncionarioService(
+		const sut = new CadastrarFuncionarioSVC(
 			encrypter,
 			userRepository
 		);
@@ -78,7 +78,7 @@ describe("Cadastrar Funcionário Service", () => {
 		const invalidUserRepository = {} as iUserRepository;
 		const encrypter = makeEncrypterSpy();
 		
-		const sut = new CadastrarFuncionarioService(
+		const sut = new CadastrarFuncionarioSVC(
 			encrypter,
 			invalidUserRepository
 		);
@@ -104,7 +104,7 @@ describe("Cadastrar Funcionário Service", () => {
 		const userRepository = makeUserRepositorySpy();
 		const invalidEncrypter = {} as iEncrypter;
 		
-		const sut = new CadastrarFuncionarioService(
+		const sut = new CadastrarFuncionarioSVC(
 			invalidEncrypter,
 			userRepository
 		);

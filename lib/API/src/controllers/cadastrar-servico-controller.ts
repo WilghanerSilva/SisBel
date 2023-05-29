@@ -2,7 +2,7 @@ import HttpResponse from "../utils/helpers/htttp-response";
 import { iCadastrarServicoService, iController } from "../utils/interfaces";
 import { HttpReq, HttpRes } from "../utils/types/http-types";
 
-class CadastrarServicoControler implements iController {
+class CadastrarServicoCTER implements iController {
 	constructor(
     private cadastrarServicoService: iCadastrarServicoService
 	){}
@@ -45,4 +45,4 @@ class CadastrarServicoControler implements iController {
 	}
 }
 
-export default CadastrarServicoControler;
+export default CadastrarServicoCTER;

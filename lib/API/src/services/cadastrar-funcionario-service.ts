@@ -2,7 +2,7 @@ import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import { iCadastrarFuncionarioService, iEncrypter, iUserRepository } from "../utils/interfaces";
 import { FuncData } from "../utils/interfaces/iCadastrarFuncionarioService";
 
-class CadastrarFuncionarioService implements iCadastrarFuncionarioService{
+class CadastrarFuncionarioSVC implements iCadastrarFuncionarioService{
 	constructor(
 		private encrypter: iEncrypter,
 		private userRepository: iUserRepository,
@@ -83,4 +83,4 @@ class CadastrarFuncionarioService implements iCadastrarFuncionarioService{
 	}
 }
 
-export default CadastrarFuncionarioService;
+export default CadastrarFuncionarioSVC;

@@ -1,6 +1,6 @@
-import CadastrarFuncionarioController from "../controllers/cadastrar-funcionario-controller";
+import CadastrarFuncionarioCTER from "../controllers/cadastrar-funcionario-controller";
 import EmailValidator from "../utils/helpers/email-validator";
-import CadastrarFuncionarioService from "../services/cadastrar-funcionario-service";
+import CadastrarFuncionarioSVC from "../services/cadastrar-funcionario-service";
 import UserRepository from "../repositories/user-repository";
 import Encrypter from "../utils/helpers/encrypter";
 
@@ -9,14 +9,14 @@ class CadastrarFuncionarioComposer {
 		const emailValidator = new EmailValidator();
 		const userRepository = new UserRepository();
 		const encrypter = new Encrypter();
-		const cadastrarFuncionarioService = new CadastrarFuncionarioService(
+		const cadastrarFuncionarioSVC= new CadastrarFuncionarioSVC(
 			encrypter, 
 			userRepository
 		);
 		
-		return new CadastrarFuncionarioController(
+		return new CadastrarFuncionarioCTER(
 			emailValidator,
-			cadastrarFuncionarioService
+			cadastrarFuncionarioSVC
 		);
 	}
 }

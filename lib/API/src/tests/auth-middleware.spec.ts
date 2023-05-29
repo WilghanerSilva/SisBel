@@ -24,7 +24,7 @@ const makeSut = () => {
 };
 
 
-describe("AuthMiddleware", () => {
+describe("Auth Middleware", () => {
 	test("É esperado que retorne 500 caso o TokenManager seja inválido", () => {
 		const tokenManager = {} as iTokenManager;
 		const sut = new AuthMiddleware(tokenManager);

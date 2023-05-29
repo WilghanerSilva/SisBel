@@ -1,29 +1,28 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import LoginController from "../controllers/login-controller";
+import LoginCTER from "../controllers/login-controller";
 import HttpResponse from "../utils/helpers/htttp-response";
 import { iLoginService, iEmailValidator } from "../utils/interfaces";
 import { HttpReq } from "../utils/types/http-types";
 
 
-describe("LoginController", () => {
+describe("Login Controller", () => {
   
-	const makeLoginServiceSpy = () => {
-		class LoginServiceSpy implements iLoginService {
+	const makeLoginSVCSpy = () => {
+		class LoginSVCSpy implements iLoginService {
 			public token = "any_token";
       
-			async auth(email: string, password: string) {
+			async auth() {
 				return this.token;
 			}
 		}
 
-		return new LoginServiceSpy();
+		return new LoginSVCSpy();
 	};
 
 	const makeEmailValidatorSpy = () => {
 		class EmailValidatorSpy implements iEmailValidator {
 			public result = true;
 
-			validateEmail(email: string){
+			validateEmail(){
 				return this.result;
 			}
 		}
@@ -33,9 +32,9 @@ describe("LoginController", () => {
 
 	const makeSut = () => {
 		const emailValidator = makeEmailValidatorSpy();
-		const loginService = makeLoginServiceSpy();
+		const loginService = makeLoginSVCSpy();
 
-		const sut = new LoginController(loginService, emailValidator);
+		const sut = new LoginCTER(loginService, emailValidator);
 	
 		return {
 			emailValidator,
@@ -47,8 +46,8 @@ describe("LoginController", () => {
   
   
 	test("É esperado que retorne 500 caso o emailValidator seja inválido", async () => {
-		const loginService = makeLoginServiceSpy();
-		const sut = new LoginController(loginService, {} as iEmailValidator);
+		const loginService = makeLoginSVCSpy();
+		const sut = new LoginCTER(loginService, {} as iEmailValidator);
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -65,7 +64,7 @@ describe("LoginController", () => {
 
 	test("É esperado que retorne 500 caso o loginService seja inválido", async () => {
 		const emailValidator = makeEmailValidatorSpy();
-		const sut = new LoginController({} as iLoginService, emailValidator);
+		const sut = new LoginCTER({} as iLoginService, emailValidator);
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -116,11 +115,11 @@ describe("LoginController", () => {
 
 	test("É esperado que retorne 500 caso o loginService lance um erro", async () => {
 		const loginServiceWithError = {
-			auth: (email: string, password: string) => {throw new Error("");}
+			auth: () => {throw new Error("");}
 		} as iLoginService;
 		const emailValidator = makeEmailValidatorSpy();
 
-		const sut = new LoginController(loginServiceWithError, emailValidator);
+		const sut = new LoginCTER(loginServiceWithError, emailValidator);
 
 		const httpRequest: HttpReq = {
 			body: {
@@ -137,11 +136,11 @@ describe("LoginController", () => {
 
 	test("É esperado que retorne 500 caso o emailValidator lance um erro", async () => {
 		const emailValidatorWithError = {
-			validateEmail: (email: string) => {throw new Error();}
+			validateEmail: () => {throw new Error();}
 		} as iEmailValidator;
-		const loginService = makeLoginServiceSpy();
+		const loginService = makeLoginSVCSpy();
 
-		const sut = new LoginController(loginService, emailValidatorWithError);
+		const sut = new LoginCTER(loginService, emailValidatorWithError);
 
 		const httpRequest: HttpReq = {
 			body: {

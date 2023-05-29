@@ -1,7 +1,7 @@
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import { iUserRepository, iCadastrarClienteService, iTokenManager, iEncrypter } from "../utils/interfaces";
 
-export default class CadastrarClienteService implements iCadastrarClienteService {
+class CadastrarClienteSVC implements iCadastrarClienteService {
 	constructor(
     private userRepository: iUserRepository, 
     private tokenManager: iTokenManager,
@@ -35,3 +35,6 @@ export default class CadastrarClienteService implements iCadastrarClienteService
 		return this.tokenManager.generate(user.id);
 	}
 }
+
+
+export default CadastrarClienteSVC;
