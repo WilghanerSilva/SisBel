@@ -1,0 +1,140 @@
+.clientehome-container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.lista {
+  padding: 2rem;
+}
+
+.header-lista {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 2rem;
+}
+
+.header-lista > h1 {
+  font-size: 1.5rem;
+  margin-bottom: 50px;
+}
+
+.header-lista > p {
+  font-size: 0.9rem;
+  color: #D99A00;
+  font-weight: bold;
+}
+
+.header-lista > p:hover {
+  cursor: pointer;
+  text-decoration: underline solid #D99A00;
+}
+
+#lista-agendamentos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.card-agendamento {
+  height: 18rem;
+  width: 14rem;
+  display: flex;
+  padding: 0 1rem;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #F0F0F0;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #2D2D2D;
+  align-items: center;
+}
+
+.agendamento-icon {
+  background-image: url(../../../public/BG.png);
+  background-size: cover;
+  aspect-ratio: 1/1;
+  height: 12rem;
+  width: 13rem;
+  border-radius: 10px;
+}
+
+.agendamento-hora {
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.detalhes-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.servico {
+  font-size: 0.8rem;
+}
+
+.menu-icon {
+  font-size: 2rem;
+}
+
+.menu-icon:hover {
+  cursor: pointer;
+  color: #000;
+}
+
+#add-agendamento {
+  height: 9rem;
+  width: 9rem;
+  font-size: 5rem;
+  background-color: #f0f0f0;
+  color: #545454;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+#add-agendamento:hover {
+  border: solid 1px blue;
+  cursor: pointer;
+}
+
+.funcionario-card {
+  height: 16rem;
+  width: 14rem;
+  display: flex;
+  padding: 0 1.5rem;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #F0F0F0;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #2D2D2D;
+  align-items: center;
+  text-align: left;
+}
+
+.funcionario-icon {
+  background-image: url(../../../public/BG.png);
+  background-size: cover;
+  height: 12rem;
+  width: 13rem;
+  border-radius: 10px;
+}
+
+.funcionario-name {
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.funcionario-servicos {
+  width: 100%;
+  text-align: left;
+  font-size: 0.8rem;
+}

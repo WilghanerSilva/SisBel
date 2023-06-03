@@ -1,0 +1,25 @@
+.home-container {
+  display: grid;
+  grid-template-rows: 12% 88%;
+  grid-template-columns: 20% 80%;
+  grid-template-areas: 
+  "nav nav "
+  "sidemenu pg-content";
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  position: relative;
+}
+
+#navbar-wrapper {
+  grid-area: nav;
+}
+
+#sidemenu-wrapper {
+  grid-area: sidemenu;
+}
+
+#content-wrapper {
+  grid-area: pg-content;
+}
