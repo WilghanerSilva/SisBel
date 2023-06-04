@@ -66,7 +66,7 @@ function Login () {
         context.setProfile(data.profile)
         context.setSigned(true);
       }).catch(err => {
-        console.log(err)
+        setErrors([err.response.data.message]);
       })
     }
   }

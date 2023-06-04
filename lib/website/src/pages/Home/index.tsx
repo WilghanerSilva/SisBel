@@ -3,7 +3,7 @@ import NavBar from "../../components/navbar"
 import SideMenu from "../../components/side-menu"
 import "./style.css"
 
-export const Home = () => {
+export function Home() {
   return (
     <div className="home-container">
       <div id="navbar-wrapper">

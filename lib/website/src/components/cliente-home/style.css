@@ -40,8 +40,8 @@
 }
 
 .card-agendamento {
-  height: 18rem;
-  width: 14rem;
+  height: 14rem;
+  width: 10rem;
   display: flex;
   padding: 0 1rem;
   flex-direction: column;
@@ -57,8 +57,8 @@
   background-image: url(../../../public/BG.png);
   background-size: cover;
   aspect-ratio: 1/1;
-  height: 12rem;
-  width: 13rem;
+  height: 8rem;
+  width: 8rem;
   border-radius: 10px;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .servico {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .menu-icon {
@@ -105,8 +105,8 @@
 }
 
 .funcionario-card {
-  height: 16rem;
-  width: 14rem;
+  height: 14rem;
+  width: 10rem;
   display: flex;
   padding: 0 1.5rem;
   flex-direction: column;
@@ -122,8 +122,8 @@
 .funcionario-icon {
   background-image: url(../../../public/BG.png);
   background-size: cover;
-  height: 12rem;
-  width: 13rem;
+  height: 8rem;
+  width: 8rem;
   border-radius: 10px;
 }
 
@@ -136,5 +136,5 @@
 .funcionario-servicos {
   width: 100%;
   text-align: left;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }

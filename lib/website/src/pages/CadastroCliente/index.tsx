@@ -107,8 +107,12 @@ function CadastroCliente () {
           Accept: '',
         }
       }).then(response => {
-        context.setToken(response.data.data.token);
+        const {data} = response.data;
+        context.setToken(data.token);
         context.setSigned(true);
+        localStorage.setItem("@Sisbel:token", data.token);
+        localStorage.setItem("@Sisbel:profile", data.profile);
+        navigate("/");
       }).catch((err) => { 
         if(err.response.status === 401)
           setErrors([err.response.data.message]);
