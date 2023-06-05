@@ -1,5 +1,5 @@
+import { CardAgendamento } from "../card-agendamento";
 import "./style.css";
-import {BsThreeDotsVertical} from "react-icons/bs";
 import {MdAddAlarm} from "react-icons/md";
 
 export default function ClienteHome () {
@@ -11,17 +11,7 @@ export default function ClienteHome () {
           <p>Visualizar agenda completa</p>
         </div>
         <div id="lista-agendamentos">
-          <div className="card-agendamento">
-            <div className="agendamento-icon">
-            </div>
-            <h3 className="agendamento-hora">
-              Hoje, 18h
-            </h3>
-            <div className="detalhes-container">
-              <p className="servico">Corte de cabelo feminino</p>
-              <BsThreeDotsVertical className="menu-icon"/>
-            </div>
-          </div>
+          <CardAgendamento/>
           <div id="add-agendamento">
             <MdAddAlarm/>
           </div>

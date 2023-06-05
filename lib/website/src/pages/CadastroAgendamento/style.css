@@ -1,0 +1,86 @@
+.agendamento-container {
+  display: grid;
+  grid-template-rows: 12% 88%;
+  grid-template-columns: 20% 80%;
+  grid-template-areas: 
+  "nav nav "
+  "sidemenu pg-content";
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  position: relative;
+}
+
+#navbar-wrapper {
+  grid-area: nav;
+}
+
+#sidemenu-wrapper {
+  grid-area: sidemenu;
+}
+
+#content-wrapper {
+  grid-area: pg-content;
+  display: grid;
+  grid-template-rows: 10% 90%;
+  grid-template-columns: 60% 40%;
+}
+
+.navigation-container {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation-container > button {
+  height: fit-content;
+  width: auto;
+  padding: 0.5rem;
+  font-size: 2rem;
+  aspect-ratio: 1/1;
+  font-weight: bold;
+  border-radius: 50px;
+  text-align: center;
+  background-color: #EEEEEE;
+  border: none;
+}
+
+.navigation-container > button:hover {
+  background-color: #CCCCCC;
+}
+
+.lista-agendamentos > h2 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.lista-cadastro {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.result-message {
+  text-align: center;
+  padding-top: 8rem;
+}
+
+#result-icon {
+  font-size:  4rem;
+  color: #22C88C;
+  margin-bottom: 2rem;
+}
+
+.result-message > p{
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #545454;
+}
+
+#id {
+  font-size: 1rem;
+  margin-top: 2rem;
+}

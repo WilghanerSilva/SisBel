@@ -1,0 +1,47 @@
+.card-agendamento {
+  height: 14rem;
+  width: 10rem;
+  display: flex;
+  padding: 0 1rem;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #F0F0F0;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #2D2D2D;
+  align-items: center;
+}
+
+.agendamento-icon {
+  background-image: url(../../../public/BG.png);
+  background-size: cover;
+  aspect-ratio: 1/1;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 10px;
+}
+
+.agendamento-hora {
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.detalhes-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.servico {
+  font-size: 0.7rem;
+}
+
+.menu-icon {
+  font-size: 2rem;
+}
+
+.menu-icon:hover {
+  cursor: pointer;
+  color: #000;
+}
