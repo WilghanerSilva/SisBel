@@ -34,7 +34,7 @@ export function CadastroAgendamento () {
         <div className="navigation-container">
           <button id="left"><BsChevronLeft/></button>
           <button id="right"><BsChevronRight/></button>
-          <h1>Confirmar agendamento</h1>
+          <h1>Agendamento conclúido</h1>
         </div>
         
         <div className="lista-agendamentos">

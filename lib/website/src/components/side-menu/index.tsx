@@ -1,16 +1,22 @@
 import "./style.css"
 import {BsHouseDoor, BsSearch, BsCalendarPlus, BsThreeDots} from "react-icons/bs";
 import {AiOutlinePlus, AiOutlineHeart} from "react-icons/ai";
-
+import { useNavigate } from "react-router-dom";
 
 export default function SideMenu () {
+  const nav = useNavigate();
+  
+  const navigateHandle = (url: string) => {
+    nav(url);
+  }
+
   return (
     <div className="sidemenu-container">
       <ul id="nav-menu">
         <li className="menu-item">
           <BsThreeDots className="menu-icon"/>
         </li>
-        <li className="menu-item">
+        <li className="menu-item" onClick={() => {navigateHandle("/")}}>
           <BsHouseDoor className="menu-icon"/>
           <p>Inicio</p>
         </li>
@@ -25,7 +31,7 @@ export default function SideMenu () {
       </ul>
       <div className="cliente-options">
         <div className="options-1">
-          <div className="options-item">
+          <div className="options-item" onClick={() => {navigateHandle("/agendamento/cadastro")}}>
             <div className="item-icon" id="NovoAgendamento">
               <AiOutlinePlus className="icon"/>
             </div>
