@@ -45,7 +45,9 @@ model Admin {
 
 model Agendamentos {
   id            String      @id @default(uuid())
-  date          DateTime
+  data          DateTime
+  detalhes      String
+  horario       String
   funcionario   Funcionario @relation(fields: [funcionarioId], references: [id])
   funcionarioId String
   cliente       Cliente?    @relation(fields: [clienteId], references: [id])
