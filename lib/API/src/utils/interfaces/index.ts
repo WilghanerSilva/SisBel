@@ -8,6 +8,8 @@ import iLoginService from "./iLoginService";
 import iCadastrarFuncionarioService from "./iCadastrarFuncionarioService";
 import iCadastrarServicoService from "./iCadastrarServicoService";
 import iServicoRepository from "./iServicoRepository";
+import iRealizarAgendamentoSVC from "./iRealizarAgendamentoService";
+import iAgendamentoRepository from "./iAgendamentoRepository";
 
 
 
@@ -21,5 +23,7 @@ export {
 	iLoginService,
 	iCadastrarFuncionarioService,
 	iCadastrarServicoService,
-	iServicoRepository
+	iServicoRepository,
+	iRealizarAgendamentoSVC,
+	iAgendamentoRepository
 };
