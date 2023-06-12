@@ -10,6 +10,7 @@ import iCadastrarServicoService from "./iCadastrarServicoService";
 import iServicoRepository from "./iServicoRepository";
 import iRealizarAgendamentoSVC from "./iRealizarAgendamentoService";
 import iAgendamentoRepository from "./iAgendamentoRepository";
+import iListarHorariosService from "./iListarHorariosService";
 
 
 
@@ -25,5 +26,6 @@ export {
 	iCadastrarServicoService,
 	iServicoRepository,
 	iRealizarAgendamentoSVC,
-	iAgendamentoRepository
+	iAgendamentoRepository,
+	iListarHorariosService
 };

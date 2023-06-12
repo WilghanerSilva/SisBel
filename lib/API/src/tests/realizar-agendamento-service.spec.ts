@@ -15,6 +15,10 @@ describe("Realizar Agendamento Service", () => {
 			async checkHour(): Promise<boolean> {
 				return this.checkHourResult;
 			}
+
+			async listByDay(): Promise<string[]> {
+				return [""];
+			}
 		}
 
 		return new AgendamentoRepositorySpy();

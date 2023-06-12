@@ -51,6 +51,26 @@ class AgendamentoRepository implements iAgendamentoRepository {
     
 		return true;
 	}
+
+	async listByDay(date: Date, funcionaroId: string): Promise<string[]> {
+		const agendamentos = await prisma.agendamentos.findMany({
+			where: {
+				funcionarioId: funcionaroId,
+				data: date
+			}
+		});
+
+		const schedules: string[] = [];
+
+		if(!agendamentos)
+			return schedules;
+    
+		agendamentos.forEach(agendamento => {
+			schedules.push(agendamento.horario);
+		});
+
+		return schedules;
+	}
 }
 
 export default AgendamentoRepository;
