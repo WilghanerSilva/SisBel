@@ -4,6 +4,21 @@ import { iLoginService, iEmailValidator } from "../utils/interfaces";
 import { HttpReq } from "../utils/types/http-types";
 
 
+/**
+#################### INSTRUÇÕES PARA REALIZAR OS TESTES ############################
+ 1- Primeiro, garanta que o seu terminal está dentro da pasta API que se encontra na pasta lib do projeto
+ 2- Após estar na garantir que o terminal está na pasta correta, basta executar o comando yarn jest
+    o comando yarn jest irá executar todos os testes uma única vez
+ 3- O comando yarn test:watchAll irá realizar todos os testes sempre que um arquivo for modificado
+ 4- O comando yarn test:watchModified irá realizar somente os testes modificados sempre quando um arquivo é modificado
+
+
+
+################# SOBRE OS ARQUIVOS DE TESTE #################
+  Os arquivos de teste são reconhecidos pelo jest quando tem um .spec ou .test no seu nome
+**/
+
+
 describe("Login Controller", () => {  //Definição do suite de teste, nesse caso o teste está relacioando ao Login Controller
   
 	//Função que retorna uma instância de uma classe que simula as dependências da classe testada
