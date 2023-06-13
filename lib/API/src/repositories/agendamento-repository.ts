@@ -1,5 +1,6 @@
 import { iAgendamentoRepository } from "../utils/interfaces";
 import prisma from "../../client";
+import { Agendamentos } from "@prisma/client";
 
 class AgendamentoRepository implements iAgendamentoRepository {
 	async create(data: { clienteId: string; funcionarioId: string; data: Date; horario: string; detalhes: string; }): Promise<boolean> {
@@ -70,6 +71,81 @@ class AgendamentoRepository implements iAgendamentoRepository {
 		});
 
 		return schedules;
+	}
+
+	async listByUserId(id: string): Promise<Agendamentos[]> {
+		const [cliente, funcionario] = await Promise.all([
+			prisma.cliente.findUnique({where: {id}}),
+			prisma.funcionario.findUnique({where: {id}})
+		]);
+
+		let agendamentos: Agendamentos[] = [];
+
+		if(cliente){
+			agendamentos = await prisma.agendamentos.findMany({
+				where:{clienteId: id},
+				orderBy: [
+					{data: "asc"},
+					{horario: "asc"}
+				],
+				select: {
+					data: true,
+					horario: true,
+					id: true,
+					detalhes: true,
+					clienteId: true,
+					funcionarioId: true,
+					funcionario: {
+						select: {
+							id: true,
+							nome: true,
+							email: true
+						}
+					},
+					cliente: {
+						select: {
+							id: true,
+							nome: true,
+							email: true
+						}
+					}
+				}
+			});
+		}
+
+		if(funcionario){
+			agendamentos = await prisma.agendamentos.findMany({
+				where: {funcionarioId: id},
+				orderBy: [
+					{data: "asc"},
+					{horario: "asc"}
+				],
+				select: {
+					data: true,
+					horario: true,
+					id: true,
+					detalhes: true,
+					clienteId: true,
+					funcionarioId: true,
+					funcionario: {
+						select: {
+							id: true,
+							nome: true,
+							email: true
+						}
+					},
+					cliente: {
+						select: {
+							id: true,
+							nome: true,
+							email: true
+						}
+					}
+				}
+			});
+		}
+
+		return agendamentos;
 	}
 }
 

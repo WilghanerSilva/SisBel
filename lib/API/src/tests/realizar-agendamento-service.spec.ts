@@ -1,6 +1,7 @@
 import { iAgendamentoRepository } from "../utils/interfaces";
 import RealizarAgendamentoSVC from "../services/realizar-agendamento-service";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
+import { Agendamentos } from "@prisma/client";
 
 describe("Realizar Agendamento Service", () => {
 	const makeAgendamentoRepositorySpy = () => {
@@ -18,6 +19,17 @@ describe("Realizar Agendamento Service", () => {
 
 			async listByDay(): Promise<string[]> {
 				return [""];
+			}
+
+			async listByUserId(): Promise<Agendamentos[]> {
+				return [{
+					id: "any_id",
+					data: new Date(),
+					detalhes: "",
+					horario: "08:00",
+					funcionarioId: "any_id",
+					clienteId: "any_id"
+				}];
 			}
 		}
 
