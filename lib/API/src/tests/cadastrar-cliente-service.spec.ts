@@ -48,6 +48,10 @@ describe("Cadastrar Cliente Service", () => {
 			async getUserById(): Promise<User | undefined> {
 				return undefined;
 			}
+
+			async deleteCliente(): Promise<boolean> {
+				return false;
+			}
 		}
 
 		return  new UserRepositorySpy();

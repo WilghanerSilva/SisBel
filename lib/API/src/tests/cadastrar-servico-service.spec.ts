@@ -39,6 +39,10 @@ describe("Cadastrar Servicos Service", () => {
 			async getUserById(): Promise<User | undefined> {
 				return this.getUserId;
 			}
+
+			async deleteCliente(): Promise<boolean> {
+				return false;
+			}
 		}
 
 		return  new UserRepositorySpy();

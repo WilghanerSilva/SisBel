@@ -12,6 +12,7 @@ import iRealizarAgendamentoSVC from "./iRealizarAgendamentoService";
 import iAgendamentoRepository from "./iAgendamentoRepository";
 import iListarHorariosService from "./iListarHorariosService";
 import iListarAgendamentosService from "./iListarAgendamentosService";
+import iDeletarClienteService from "./iDeletarClienteService";
 
 
 
@@ -29,5 +30,6 @@ export {
 	iRealizarAgendamentoSVC,
 	iAgendamentoRepository,
 	iListarHorariosService,
-	iListarAgendamentosService
+	iListarAgendamentosService,
+	iDeletarClienteService
 };

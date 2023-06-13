@@ -8,6 +8,8 @@ interface iUserRepository {
   createFuncionario(data: CreateFuncionarioData ): Promise<User | undefined> 
 
   getUserById(id: string): Promise<User | undefined>;
+
+  deleteCliente(id: string): Promise<boolean>;
 }
 
 export default iUserRepository;

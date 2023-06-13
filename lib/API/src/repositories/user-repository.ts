@@ -130,6 +130,14 @@ class UserRepository implements iUserRepository {
 
 		return undefined;
 	}
+
+	async deleteCliente(id: string): Promise<boolean> {
+		const result = await prisma.cliente.delete({
+			where: {id}
+		});
+
+		return !result;
+	}
 }
 
 

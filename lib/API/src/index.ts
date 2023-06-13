@@ -7,8 +7,8 @@ import agendamentoRouter from "./routes/agendamento-router";
 
 
 const app = new Server(3005, [
-	clienteRouter, 
 	authRouter,
+	clienteRouter, 
 	funcionarioRouter,
 	servicoRouter,
 	agendamentoRouter
