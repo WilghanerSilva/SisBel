@@ -13,6 +13,7 @@ import iAgendamentoRepository from "./iAgendamentoRepository";
 import iListarHorariosService from "./iListarHorariosService";
 import iListarAgendamentosService from "./iListarAgendamentosService";
 import iDeletarClienteService from "./iDeletarClienteService";
+import iObterDadosClienteService from "./iObterDadosClienteService";
 
 
 
@@ -31,5 +32,6 @@ export {
 	iAgendamentoRepository,
 	iListarHorariosService,
 	iListarAgendamentosService,
-	iDeletarClienteService
+	iDeletarClienteService,
+	iObterDadosClienteService,
 };

@@ -4,12 +4,14 @@ import CadastrarClienteComposer from "../composers/cadastrar-client-composer";
 import DeletarClienteComposer from "../composers/deletar-cliente-composer";
 import MiddlewareAdapter from "../utils/adapter/middleware-adapter";
 import EditarClienteComposer from "../composers/editar-cliente-composer";
+import ObterDadosClienteComposer from "../composers/obter-dados-cliente-composer";
 
 const clienteRouter = Router();
 
 const cadastrarClienteController = CadastrarClienteComposer.compose();
 const deletarClienteController = DeletarClienteComposer.compose();
 const editarClienteController = EditarClienteComposer.compose();
+const obteDadosClienteController = ObterDadosClienteComposer.compose();
 
 clienteRouter.post("/cliente/cadastrar", ExpressControllerAdapter.adapt(
 	cadastrarClienteController
@@ -23,6 +25,10 @@ clienteRouter.delete("/cliente", ExpressControllerAdapter.adapt(
 
 clienteRouter.put("/cliente", ExpressControllerAdapter.adapt(
 	editarClienteController
+));
+
+clienteRouter.get("/cliente", ExpressControllerAdapter.adapt(
+	obteDadosClienteController
 ));
 
 export default clienteRouter;
