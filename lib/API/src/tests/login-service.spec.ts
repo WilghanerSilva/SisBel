@@ -66,6 +66,10 @@ describe("Login Service", () => {
 			async deleteCliente(): Promise<boolean> {
 				return false;
 			}
+
+			async updateCliente(): Promise<User | undefined> {
+				return undefined;
+			}
 		}
 
 		return  new UserRepositorySpy();

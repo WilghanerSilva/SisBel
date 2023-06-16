@@ -10,6 +10,12 @@ interface iUserRepository {
   getUserById(id: string): Promise<User | undefined>;
 
   deleteCliente(id: string): Promise<boolean>;
+
+  updateCliente(id: string, data: {
+    nome: string,
+    senha: string,
+    telefone: string
+  }): Promise<User | undefined>;
 }
 
 export default iUserRepository;

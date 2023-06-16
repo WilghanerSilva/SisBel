@@ -2,7 +2,8 @@ export type User = {
   id: string,
   name: string,
   email: string,
-  profile: string
+  profile: string,
+  phone?: string
 }
 
 export type UserWithPassword = {
@@ -10,6 +11,7 @@ export type UserWithPassword = {
   name: string,
   email: string,
   profile: string,
+  phone: string,
   password: string
 }
 

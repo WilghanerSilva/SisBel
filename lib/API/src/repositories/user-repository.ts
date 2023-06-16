@@ -136,7 +136,22 @@ class UserRepository implements iUserRepository {
 			where: {id}
 		});
 
-		return !result;
+		return !!result;
+	}
+
+	async updateCliente(id: string, data: { nome: string; senha: string; telefone: string; }): Promise<User | undefined> {
+		const user = await prisma.cliente.update({
+			where: {id},
+			data
+		});
+
+		return {
+			name: user.nome,
+			email: user.email,
+			id: user.id,
+			profile: user.perfil,
+			phone: user.telefone
+		};
 	}
 }
 
