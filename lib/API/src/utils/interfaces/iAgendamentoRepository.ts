@@ -3,6 +3,7 @@ import { Agendamentos } from "@prisma/client";
 type criarAgendamentoData = {
   clienteId: string,
   funcionarioId: string,
+  servicoId: string,
   data: Date,
   horario: string,
   detalhes: string,

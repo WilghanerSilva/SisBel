@@ -4,7 +4,8 @@ interface iRealizarAgendamentoSVC {
     hours: string, 
     funcionarioId: string, 
     clienteId: string, 
-    details: string
+    details: string,
+    servicoId: string,
   ): Promise<string>;
 }
 

@@ -8,7 +8,7 @@ class RealizarAgendamentoCTER implements iController {
 	){}
 
 	async run(httpRequest: HttpReq): Promise<HttpRes> {
-		const {date, time, details, funcionarioId} = httpRequest.body;
+		const {date, time, details, funcionarioId, servicoId} = httpRequest.body;
 		const {userId} = httpRequest.headers;
 
 		if(!userId)
@@ -26,9 +26,12 @@ class RealizarAgendamentoCTER implements iController {
 		if(!funcionarioId)
 			return HttpResponse.badRequest("Funcionario Id");
 
+		if(!servicoId)
+			return HttpResponse.badRequest("Servico Id");
+
 		try {
 			const serviceResult = await this.realizarAgendamentoSVC.agendar(
-				date, time,funcionarioId, userId, details
+				date, time,funcionarioId, userId, details, servicoId
 			);
 
 			if(serviceResult === "InvalidDate")

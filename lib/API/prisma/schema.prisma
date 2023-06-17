@@ -52,12 +52,15 @@ model Agendamentos {
   funcionarioId String
   cliente       Cliente?    @relation(fields: [clienteId], references: [id])
   clienteId     String?
+  servico       Servicos    @relation(fields: [servicoId], references: [id])
+  servicoId     String
 }
 
 model Servicos {
-  id           String        @id @default(uuid())
-  nome         String        @unique
+  id           String         @id @default(uuid())
+  nome         String         @unique
   publico      String
   categoria    String
   funcionarios Funcionario[]
+  agendamentos Agendamentos[]
 }

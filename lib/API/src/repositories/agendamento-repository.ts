@@ -3,7 +3,7 @@ import prisma from "../../client";
 import { Agendamentos } from "@prisma/client";
 
 class AgendamentoRepository implements iAgendamentoRepository {
-	async create(data: { clienteId: string; funcionarioId: string; data: Date; horario: string; detalhes: string; }): Promise<boolean> {
+	async create(data: { clienteId: string; funcionarioId: string; servicoId: string; data: Date; horario: string; detalhes: string}): Promise<boolean> {
 		const agendamento = await prisma.agendamentos.create({data});
 
 		if(!agendamento)
@@ -23,6 +23,18 @@ class AgendamentoRepository implements iAgendamentoRepository {
 			prisma.funcionario.update({
 				where: {
 					id: data.funcionarioId
+				},
+				data: {
+					agendamentos: {
+						connect: {
+							id: agendamento.id
+						}
+					}
+				}
+			}),
+			prisma.servicos.update({
+				where: {
+					id: data.servicoId
 				},
 				data: {
 					agendamentos: {
@@ -94,6 +106,14 @@ class AgendamentoRepository implements iAgendamentoRepository {
 					id: true,
 					detalhes: true,
 					clienteId: true,
+					servicoId: true,
+					servico: {
+						select: {
+							nome: true,
+							categoria: true,
+							publico: true
+						}
+					},
 					funcionarioId: true,
 					funcionario: {
 						select: {
@@ -126,6 +146,14 @@ class AgendamentoRepository implements iAgendamentoRepository {
 					id: true,
 					detalhes: true,
 					clienteId: true,
+					servicoId: true,
+					servico: {
+						select: {
+							nome: true,
+							categoria: true,
+							publico: true
+						}
+					},
 					funcionarioId: true,
 					funcionario: {
 						select: {

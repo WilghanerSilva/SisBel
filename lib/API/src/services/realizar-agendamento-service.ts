@@ -7,7 +7,7 @@ class RealizarAgendamentoSVC implements iRealizarAgendamentoSVC {
     private agendamentoRepository: iAgendamentoRepository
 	){}
 
-	async agendar(date: string, hours: string, funcionarioId: string, clienteId: string, details: string): Promise<string> {
+	async agendar(date: string, hours: string, funcionarioId: string, clienteId: string, details: string, servicoId: string): Promise<string> {
 		if(!this.agendamentoRepository || !this.agendamentoRepository.create)
 			throw new InvalidDependencyError("Agendamento Repository");
 
@@ -30,9 +30,10 @@ class RealizarAgendamentoSVC implements iRealizarAgendamentoSVC {
 		const repositoryResult = await this.agendamentoRepository.create({
 			clienteId,
 			funcionarioId,
+			servicoId,
 			data: dateConverted,
 			horario: hours,
-			detalhes: details
+			detalhes: details,
 		});
 
 		if(!repositoryResult)

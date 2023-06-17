@@ -1,4 +1,4 @@
-import ListarServicosCTER from "../controllers/listar-servicos.controller";
+import ListarServicosCTER from "../controllers/listar-servicos-controller";
 import ServicoRepository from "../repositories/servico-repository";
 import ListarServicosSVC from "../services/listar-servicos-service";
 
