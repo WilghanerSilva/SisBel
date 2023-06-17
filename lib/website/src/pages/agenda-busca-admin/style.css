@@ -1,0 +1,206 @@
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 200px 50px 100px;
+    gap: 30px;
+    
+    width: 1920px;
+    height: 50px;
+    
+    background: #000000;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    }
+    *{
+      text-decoration: none;
+    }
+    .top-buttons {
+      color: #FFFFFF;
+    }
+    #beleza{
+    width: 183px;
+    height: 49px;
+    position:absolute;
+    left:102px;
+    top:51.5px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    }
+    
+    .top-buttons{
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+    }
+    #painel{
+      color: #ffffff;
+      position: absolute;
+      top: 67.5px;
+      left: 462.5px;
+    }
+    #localizaçao{
+      color: #ffffff;
+      position: absolute;
+      top: 67.5px;
+      left: 585.5px;
+    }
+    #contato{
+      color: #ffffff;
+      position: absolute;
+      top: 67.5px;
+      left:758.5px;
+    }
+    #termos{
+      color: #ffffff;
+      position: absolute;
+      top: 67.5px;
+      left: 898.5px;
+    }
+    .user-settings{
+      position: absolute;
+      top:67.5px;
+      left: 1706.5px;
+    }
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #040404;
+        min-width: 120px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+    
+    .user-settings:hover .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-menu li {
+        padding: 10px;
+    }
+    
+    .dropdown-menu li:hover {
+        background-color: #030303;
+    }
+    
+    .user-settings a {
+        position: relative;
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .user-settings a::after {
+        content: "\25BC";
+        margin-left: 5px;
+    }
+    
+    .dropdown-menu li:last-child {
+        border-top: 1px solid #ccc;
+    }
+    
+    .dropdown-menu li:last-child a {
+        color: #f00;
+    }
+    .side-buttons{
+      font-family: 'Montserrat', sans-serif;
+    }
+    #reticen{
+      color:#545454;
+      position: absolute;
+      top: 237px;
+      left:142px;
+    }
+    #inicio{
+      color:#545454;
+      position: absolute;
+      top: 288.23px;
+      left:140px;
+    }
+    #agenda{
+      color:#545454;
+      position: absolute;
+      top: 422px;
+      left: 140px;
+    }
+    #buscar{
+      color:#545454;
+      position: absolute;
+      top: 355px;
+      left:141.16px;
+    }
+    #favoritos{
+      color:#545454;
+      position: absolute;
+      top: 619.45px;
+      left: 154px;
+    }
+    #novo-agendamento{
+      color:#545454;
+      position: absolute;
+      top: 540.45px;
+      left: 154px;
+    }
+    .filter-section {
+        font-family: 'Montserrat',sans-seryf;
+        background-color: #f5f5f5;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .filter-section h2 {
+        margin-bottom: 10px;
+    }
+    
+    .filter-container {
+        display: flex;
+        align-items: center;
+    }
+    
+    .filter-container label {
+        margin-right: 10px;
+    }
+    
+    .filter-container input[type="date"] {
+        padding: 5px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+    }
+    
+    .filter-container button {
+        padding: 8px 16px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .filter-container button:hover {
+        background-color: #555;
+    }
+    
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #040404;
+        min-width: 120px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+#filtrar{
+  position:absolute;
+  top: 160px;
+  left: 550px
+}
+
+    
