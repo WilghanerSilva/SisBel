@@ -22,6 +22,22 @@ class ServicoRepository implements iServicoRepository {
     
 		return servico;
 	}
+
+	async listAll(): Promise<Servicos[]> {
+		return await prisma.servicos.findMany();
+	}
+
+	async listByAudience(audience: string): Promise<Servicos[]> {
+		return await prisma.servicos.findMany({
+			where: {publico: audience}
+		});
+	}
+
+	async listByCategory(category: string): Promise<Servicos[]> {
+		return await prisma.servicos.findMany({
+			where: {categoria: category}
+		});
+	}
 }
 
 

@@ -74,6 +74,18 @@ describe("Cadastrar Servicos Service", () => {
 			async getByName(): Promise<Servicos | null> {
 				return this.getResult;
 			}
+
+			async listAll(): Promise<Servicos[]> {
+				return [];
+			}
+
+			async listByAudience(): Promise<Servicos[]> {
+				return [];
+			}
+
+			async listByCategory(): Promise<Servicos[]> {
+				return [];
+			}
 		}
 
 		return new ServicoRepositorySpy;
