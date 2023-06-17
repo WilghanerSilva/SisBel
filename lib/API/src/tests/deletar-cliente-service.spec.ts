@@ -2,6 +2,7 @@ import { iUserRepository } from "../utils/interfaces";
 import DeletarClienteSVC from "../services/deletar-cliente-service";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import { User } from "../utils/types/user-types";
+import { Funcionario } from "@prisma/client";
 
 describe("Deletar Cliente Service", () => {
 	const makeUserRepositorySpy = () => {
@@ -41,6 +42,14 @@ describe("Deletar Cliente Service", () => {
 
 			async deleteFuncionario(): Promise<boolean> {
 				return false;
+			}
+
+			async listFuncionarioByService(): Promise<Funcionario[]> {
+				return [];
+			}
+
+			async listFuncionarios(): Promise<Funcionario[]> {
+				return [];
 			}
 		}
 

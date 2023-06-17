@@ -1,3 +1,4 @@
+import { Funcionario } from "@prisma/client";
 import { CreateClienteData, UserWithPassword, User, CreateFuncionarioData} from "../types/user-types";
 
 interface iUserRepository {
@@ -18,6 +19,10 @@ interface iUserRepository {
     senha: string,
     telefone: string
   }): Promise<User | undefined>;
+
+  listFuncionarios(): Promise<Funcionario[]>
+  
+  listFuncionarioByService(serviceId: string): Promise<Funcionario[]>
 }
 
 export default iUserRepository;

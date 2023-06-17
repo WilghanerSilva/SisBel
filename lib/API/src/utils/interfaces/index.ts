@@ -16,6 +16,7 @@ import iDeletarClienteService from "./iDeletarClienteService";
 import iObterDadosClienteService from "./iObterDadosClienteService";
 import iDeletarFuncionarioService from "./iDeletarFuncionarioService";
 import iListarServicosService from "./iListarServicosService";
+import iListarFuncionariosService from "./iListarFuncionariosService";
 
 
 
@@ -37,5 +38,6 @@ export {
 	iDeletarClienteService,
 	iObterDadosClienteService,
 	iDeletarFuncionarioService,
-	iListarServicosService
+	iListarServicosService,
+	iListarFuncionariosService
 };

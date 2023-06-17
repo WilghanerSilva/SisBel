@@ -1,3 +1,4 @@
+import { Funcionario } from "@prisma/client";
 import CadastrarFuncionarioSVC from "../services/cadastrar-funcionario-service";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import { iUserRepository, iEncrypter } from "../utils/interfaces";
@@ -49,6 +50,14 @@ describe("Cadastrar Funcionario Service", () => {
 
 			async deleteFuncionario(): Promise<boolean> {
 				return false;
+			}
+
+			async listFuncionarioByService(): Promise<Funcionario[]> {
+				return [];
+			}
+
+			async listFuncionarios(): Promise<Funcionario[]> {
+				return [];
 			}
 		}
 

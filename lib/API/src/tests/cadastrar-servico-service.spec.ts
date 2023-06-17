@@ -2,7 +2,7 @@ import { iServicoRepository, iUserRepository } from "../utils/interfaces";
 import CadastrarServicoSVC from "../services/cadastrar-servico-service";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import {User, UserWithPassword } from "../utils/types/user-types";
-import { Servicos } from "@prisma/client";
+import { Funcionario, Servicos } from "@prisma/client";
 
 describe("Cadastrar Servicos Service", () => {
 	const makeUserRepositorySpy = () => {
@@ -50,6 +50,14 @@ describe("Cadastrar Servicos Service", () => {
 
 			async deleteFuncionario(): Promise<boolean> {
 				return false;
+			}
+
+			async listFuncionarioByService(): Promise<Funcionario[]> {
+				return [];
+			}
+
+			async listFuncionarios(): Promise<Funcionario[]> {
+				return [];
 			}
 		}
 

@@ -2,6 +2,7 @@ import LoginSVC from "../services/login-service";
 import { iEncrypter, iTokenManager, iUserRepository } from "../utils/interfaces";
 import InvalidDependencyError from "../utils/erros/invaliddependency-error";
 import { User, UserWithPassword } from "../utils/types/user-types";
+import { Funcionario } from "@prisma/client";
 
 describe("Login Service", () => {
 	const makeTokenManagerSpy = () => {
@@ -73,6 +74,14 @@ describe("Login Service", () => {
 
 			async deleteFuncionario(): Promise<boolean> {
 				return false;
+			}
+
+			async listFuncionarioByService(): Promise<Funcionario[]> {
+				return [];
+			}
+
+			async listFuncionarios(): Promise<Funcionario[]> {
+				return [];
 			}
 		}
 

@@ -1,6 +1,7 @@
 import prisma from "./../../client";
 import { iUserRepository } from "../utils/interfaces";
 import { CreateClienteData, CreateFuncionarioData, User, UserWithPassword } from "../utils/types/user-types";
+import { Funcionario } from "@prisma/client";
 
 class UserRepository implements iUserRepository {
 	async createCliente(data: CreateClienteData): Promise<User | undefined> {
@@ -159,6 +160,18 @@ class UserRepository implements iUserRepository {
 		const result = await prisma.funcionario.delete({where: {id}});
 
 		return !!result;
+	}
+
+	async listFuncionarioByService(serviceId: string): Promise<Funcionario[]> {
+		return await prisma.funcionario.findMany({
+			where: {
+				servicos: {every: {id: serviceId}}
+			}
+		});
+	}
+
+	async listFuncionarios(): Promise<Funcionario[]> {
+		return await prisma.funcionario.findMany();
 	}
 }
 
