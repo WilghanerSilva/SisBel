@@ -38,6 +38,10 @@ describe("Deletar Cliente Service", () => {
 			async updateCliente(): Promise<User | undefined> {
 				return undefined;
 			}
+
+			async deleteFuncionario(): Promise<boolean> {
+				return false;
+			}
 		}
 
 		return  new UserRepositorySpy();

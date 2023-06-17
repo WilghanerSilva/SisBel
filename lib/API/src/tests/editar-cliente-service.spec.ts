@@ -71,6 +71,10 @@ describe("Editar Cliente Service", () => {
 			async updateCliente(): Promise<User | undefined> {
 				return this.updateResult;
 			}
+
+			async deleteFuncionario(): Promise<boolean> {
+				return false;
+			}
 		}
 
 		return new UserRepositorySpy;

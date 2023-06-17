@@ -153,6 +153,13 @@ class UserRepository implements iUserRepository {
 			phone: user.telefone
 		};
 	}
+
+	async deleteFuncionario(id: string): Promise<boolean> {
+		await prisma.agendamentos.deleteMany({where: {funcionarioId: id}});
+		const result = await prisma.funcionario.delete({where: {id}});
+
+		return !!result;
+	}
 }
 
 

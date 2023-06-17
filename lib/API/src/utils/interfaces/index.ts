@@ -14,6 +14,7 @@ import iListarHorariosService from "./iListarHorariosService";
 import iListarAgendamentosService from "./iListarAgendamentosService";
 import iDeletarClienteService from "./iDeletarClienteService";
 import iObterDadosClienteService from "./iObterDadosClienteService";
+import iDeletarFuncionarioService from "./iDeletarFuncionarioService";
 
 
 
@@ -34,4 +35,5 @@ export {
 	iListarAgendamentosService,
 	iDeletarClienteService,
 	iObterDadosClienteService,
+	iDeletarFuncionarioService
 };

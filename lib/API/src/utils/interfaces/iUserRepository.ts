@@ -11,6 +11,8 @@ interface iUserRepository {
 
   deleteCliente(id: string): Promise<boolean>;
 
+  deleteFuncionario(id: string): Promise<boolean>;
+
   updateCliente(id: string, data: {
     nome: string,
     senha: string,
