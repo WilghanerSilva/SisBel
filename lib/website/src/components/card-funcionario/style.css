@@ -1,8 +1,8 @@
-.card-agendamento {
+.funcionario-card {
   height: 14rem;
   width: 10rem;
   display: flex;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   flex-direction: column;
   gap: 15px;
   background-color: #F0F0F0;
@@ -10,12 +10,12 @@
   font-weight: bold;
   color: #2D2D2D;
   align-items: center;
+  text-align: left;
 }
 
-.agendamento-icon {
+.funcionario-icon {
   background-image: url(../../../public/BG.png);
   background-size: cover;
-  aspect-ratio: 1/1;
   height: 8rem;
   width: 8rem;
   border-radius: 10px;
@@ -24,35 +24,19 @@
   justify-content: center;
 }
 
-.agendamento-icon > img {
-  aspect-ratio: 1/1;
-  height: 90%;
-  width: auto;
-}
-
-.agendamento-hora {
+.funcionario-name {
   width: 100%;
   text-align: left;
   font-size: 1rem;
 }
 
-.detalhes-container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.servico {
-  font-size: 1rem;
+.funcionario-servicos {
+  width: 100%;
   text-align: left;
+  font-size: 0.7rem;
+}
+
+.func-icon {
+  height: 90%;
   width: 90%;
-}
-
-.menu-icon {
-  font-size: 2rem;
-}
-
-.menu-icon:hover {
-  cursor: pointer;
-  color: #000;
 }

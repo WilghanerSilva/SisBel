@@ -36,7 +36,16 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  overflow: scroll;
   gap: 2rem;
+}
+
+#lista-funcionarios {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  overflow: scroll;
 }
 
 #add-agendamento {
@@ -56,37 +65,3 @@
   cursor: pointer;
 }
 
-.funcionario-card {
-  height: 14rem;
-  width: 10rem;
-  display: flex;
-  padding: 0 1.5rem;
-  flex-direction: column;
-  gap: 15px;
-  background-color: #F0F0F0;
-  border-radius: 10px;
-  font-weight: bold;
-  color: #2D2D2D;
-  align-items: center;
-  text-align: left;
-}
-
-.funcionario-icon {
-  background-image: url(../../../public/BG.png);
-  background-size: cover;
-  height: 8rem;
-  width: 8rem;
-  border-radius: 10px;
-}
-
-.funcionario-name {
-  width: 100%;
-  text-align: left;
-  font-size: 1rem;
-}
-
-.funcionario-servicos {
-  width: 100%;
-  text-align: left;
-  font-size: 0.7rem;
-}

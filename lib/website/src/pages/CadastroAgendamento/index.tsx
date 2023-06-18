@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import { CardAgendamento } from "../../components/card-agendamento";
 import NavBar from "../../components/navbar";
 import SideMenu from "../../components/side-menu";
@@ -8,6 +8,8 @@ import { FormAgendamento } from "../../components/form-agendamento";
 import { ConfirmacaoAgendamento } from "../../components/confirmacao-agendamento";
 import { ResultadoAgendamento } from "../../components/resultado-agendamento";
 import api from "../../services/api";
+import { Agendamento } from "../../types/AgendamentoType";
+import AuthContext from "../../contexts/auth";
 
 export function CadastroAgendamento () {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +19,22 @@ export function CadastroAgendamento () {
   const [detalhes, setDetalhes] = useState("");
   const [horario, setHorario] = useState("");
   const [error, setError] = useState("")
+  const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
+
+  const context=  useContext(AuthContext);
+
+  useEffect(() => {
+    api.post("agendamento/listar-agendamentos",{
+      id:context.user?.id
+    })
+      .then(response => {
+        const {data} = response.data;
+        setAgendamentos(data);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  }, [])
 
   const incrementPage = () => {
     const newPage = (currentPage + 1) < 3 ? currentPage + 1 : 3
@@ -68,7 +86,7 @@ export function CadastroAgendamento () {
         <div className="lista-agendamentos">
           <h2>Seus próximos agendamentos</h2>
           <div className="lista-cadastro">
-            <CardAgendamento/>
+            {agendamentos.map(agendamento => (<CardAgendamento agendamento={agendamento}/>))}
           </div>
         </div>
         
