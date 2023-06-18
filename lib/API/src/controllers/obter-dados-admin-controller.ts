@@ -18,7 +18,12 @@ class ObterDadosAdminCTER implements iController {
 			if(serviceResult.message === "isNotAdmin" || !serviceResult.admin)
 				return HttpResponse.unauthorized("O usuário não é um admin");
 
-			return HttpResponse.ok(serviceResult.admin);    
+			return HttpResponse.ok({
+				name: serviceResult.admin.nome,
+				email: serviceResult.admin.email,
+				id: serviceResult.admin.id,
+				profile: serviceResult.admin.perfil
+			});    
 		} catch (error) {
 			console.error(error);
 			return HttpResponse.serverError();

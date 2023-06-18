@@ -1,0 +1,73 @@
+.cliente-options {
+  font-size: 1rem;
+  color: #545454;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 25%;
+  gap: 15%;
+}
+
+.options-1 {
+  border-bottom: #545454 1px solid;  
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  width: fit-content;
+}
+
+.item-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.icon {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+#NovoAgendamento {
+  background-image: url("./../../../public/BG.png");
+  background-size: cover;
+}
+
+#Favoritos {
+  background-color: #000;
+}
+
+.options-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.options-1 > p{
+  font-size: 1rem;
+}
+
+.options-item:hover {
+  cursor: pointer;
+  color: #000;
+}
+
+.servicos-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.servico-item {
+  font-size: 1rem;
+  list-style-type: none;
+}
+
+.servico-item:hover {
+  color: #000;
+  cursor: pointer;
+}

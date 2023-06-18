@@ -1,0 +1,72 @@
+.table-container {
+  width: 100%;
+  height: 90%;
+  color: #333333;
+}
+
+table {
+  border-collapse: collapse;
+  border: solid 1px #fff;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+td {
+  border: solid 1px #333;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  background-color: #f9f9f9;
+}
+
+th {
+  border: solid 1px #000;
+  padding: 1rem 2rem;
+  background-color: #f0f0f0;
+}
+
+.ocupado {
+  background-color: #e5e5e5;
+}
+
+
+.agendamento-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.agendamento-table th,
+.agendamento-table td {
+  border: 1px solid #333333;
+  padding: 10px;
+}
+
+.agendamento-table thead th {
+  border-bottom: none;
+  border-top: none;
+}
+
+.agendamento-table thead th:first-child {
+  border-left: none;
+}
+
+.agendamento-table thead th:last-child {
+  border-right: none;
+}
+
+.agendamento-table tbody tr:first-child td {
+  border-top: none;
+}
+
+.agendamento-table tbody td:first-child {
+  border-left: none;
+}
+
+.agendamento-table tbody td:last-child {
+  border-right: none;
+}
+
+.agendamento-table tbody tr:last-child td {
+  border-bottom: none;
+}

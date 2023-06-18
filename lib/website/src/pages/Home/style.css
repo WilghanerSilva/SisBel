@@ -20,6 +20,6 @@
   grid-area: sidemenu;
 }
 
-#content-wrapper {
+#content-wrapper-home {
   grid-area: pg-content;
 }

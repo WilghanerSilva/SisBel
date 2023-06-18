@@ -1,0 +1,47 @@
+.admin-options {
+  font-size: 1rem;
+  color: #545454;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 25%;
+  margin-top: 3rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-bottom: 1px solid #545454;
+  padding-bottom: 2rem;
+  width: fit-content;
+}
+
+.option-icon {
+  width: 2rem;
+  height: 2rem;
+  background-image: url(../../../public/BG.png);
+  border-radius: 5px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.admin-option-icon {
+  height: 1rem;
+  width: 1rem;
+  color: #000;
+}
+
+.options-container:hover {
+  color: #000;
+  cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import {FaUserAlt} from "react-icons/fa";
 import "./style.css"
 import {GoTriangleDown, GoTriangleUp} from "react-icons/go";
 import AuthContext from "../../contexts/auth";
@@ -22,6 +23,7 @@ export default function NavBar() {
       </ul>
       <div className="user-menu" onClick={menuHandle}>
         <div className="img-wrapper">
+          <FaUserAlt/>
         </div>
         <p>{context.user?.name}</p>
         {menuIsOpen ? <GoTriangleUp/> : <GoTriangleDown/>}
