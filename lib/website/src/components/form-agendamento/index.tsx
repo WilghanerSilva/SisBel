@@ -10,6 +10,7 @@ interface Props {
   date: string,
   horario: string,
   detalhes: string,
+  error: string,
   setServicoId: (value: string) => void
   setFuncionarioId: (value: string) => void
   setDate: (value: string) => void
@@ -76,7 +77,7 @@ export function FormAgendamento (props: Props) {
 
   return (
     <div className="form-agendamento">
-          
+          <p>{props.error}</p>
           <div className="agendamento-input-container">
             <label htmlFor="servico">Selecione um serviço</label>
             <select name="servico" onChange={e => handleSelectChange(e, props.setServicoId)}>

@@ -7,6 +7,7 @@ import "./style.css";
 import { FormAgendamento } from "../../components/form-agendamento";
 import { ConfirmacaoAgendamento } from "../../components/confirmacao-agendamento";
 import { ResultadoAgendamento } from "../../components/resultado-agendamento";
+import api from "../../services/api";
 
 export function CadastroAgendamento () {
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,17 +16,34 @@ export function CadastroAgendamento () {
   const [date, setDate] = useState("");
   const [detalhes, setDetalhes] = useState("");
   const [horario, setHorario] = useState("");
+  const [error, setError] = useState("")
 
   const incrementPage = () => {
     const newPage = (currentPage + 1) < 3 ? currentPage + 1 : 3
     setCurrentPage(newPage);
-    console.log(newPage);
   }
 
   const decrementPage = () => {
     const newPage = (currentPage - 1) > 1 ? currentPage - 1: 1
     setCurrentPage(newPage)
-    console.log(newPage);
+  }
+
+  const handleSubmitForm = () => {
+    api.post("/agendamento/cadastrar", {
+      date,
+      time: horario,
+      details: detalhes,
+      funcionarioId,
+      servicoId
+    })
+      .then( response => {
+        incrementPage();
+        setError("");
+      })
+      .catch(error => {
+        decrementPage();
+        setError("Verifique se você preencheu todas as informações corretamente")
+      })
   }
 
   return (
@@ -39,8 +57,12 @@ export function CadastroAgendamento () {
       <div id="content-wrapper">
         <div className="navigation-container">
           <button id="left" onClick={decrementPage}><BsChevronLeft/></button>
-          <button id="right" onClick={incrementPage}><BsChevronRight/></button>
-          <h1>Agendamento conclúido</h1>
+          <button id="right"><BsChevronRight/></button>
+          <h1>
+            {currentPage === 1 && ("Realizar Agendamento")}
+            {currentPage === 2 && ("Confirmar Agendamento")}
+            {currentPage === 3 && ("Agendamento Concluído")}
+          </h1>
         </div>
         
         <div className="lista-agendamentos">
@@ -63,6 +85,7 @@ export function CadastroAgendamento () {
             setHorario={setHorario}
             setServicoId={setServicoId}
             buttonFunction={incrementPage}
+            error={error}
           />
         )}
         {
@@ -71,6 +94,7 @@ export function CadastroAgendamento () {
               date={date}
               horario={horario}
               servicoId={servicoId}
+              buttonFunction={handleSubmitForm}
             />
         )}
         {

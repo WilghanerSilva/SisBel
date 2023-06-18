@@ -1,16 +1,19 @@
 import { useContext } from "react";
 import "./style.css";
 import AuthContext from "../../contexts/auth";
+import { useNavigate } from "react-router-dom";
 
 
 interface Props {
   date: string,
   horario: string,
-  servicoId: string
+  servicoId: string,
+  buttonFunction: () => void
 }
 
 export function ConfirmacaoAgendamento (props: Props) {
   const context = useContext(AuthContext);
+  const nav = useNavigate();
   const normalizeDateMessage = () => {
     const date = new Date(props.date)
     const mesesPorExtenso = [
@@ -47,8 +50,8 @@ export function ConfirmacaoAgendamento (props: Props) {
           </div>
           
           <div className="confirmation-buttons-container">
-            <button id="concluir">Concluir</button>
-            <button id="cancelar">Cancelar</button>
+            <button id="concluir" onClick={props.buttonFunction}>Concluir</button>
+            <button id="cancelar" onClick={e => nav("/")}>Cancelar</button>
           </div>
         </div>
   )
