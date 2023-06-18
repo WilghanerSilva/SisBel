@@ -28,7 +28,8 @@ describe("Realizar Agendamento Service", () => {
 					detalhes: "",
 					horario: "08:00",
 					funcionarioId: "any_id",
-					clienteId: "any_id"
+					clienteId: "any_id",
+					servicoId: "any_id"
 				}];
 			}
 		}
@@ -63,7 +64,8 @@ describe("Realizar Agendamento Service", () => {
 			"08:00",
 			"any_funcioanrio_id",
 			"any_cliente_id",
-			""
+			"",
+			"any_id"
 		)).rejects.toThrow(new InvalidDependencyError("Agendamento Repository"));
 	});
 
@@ -75,7 +77,8 @@ describe("Realizar Agendamento Service", () => {
 			"08:00",
 			"any_funcioanrio_id",
 			"any_cliente_id",
-			""
+			"",
+			"any_id"
 		);
 
 		expect(result).toEqual("InvalidDate");
@@ -91,7 +94,8 @@ describe("Realizar Agendamento Service", () => {
 			"08:00",
 			"any_funcioanrio_id",
 			"any_cliente_id",
-			""
+			"",
+			"any_id"
 		);
 
 		expect(result).toEqual("BusyHours");
@@ -108,7 +112,8 @@ describe("Realizar Agendamento Service", () => {
 				"08:00",
 				"any_funcioanrio_id",
 				"any_cliente_id",
-				""
+				"",
+				"any_id"
 			)
 		).rejects.toThrowError();
 	});
@@ -121,7 +126,8 @@ describe("Realizar Agendamento Service", () => {
 			"08:00",
 			"any_funcioanrio_id",
 			"any_cliente_id",
-			""
+			"",
+			"any_id"
 		);
 
 		expect(result).toEqual("ok");

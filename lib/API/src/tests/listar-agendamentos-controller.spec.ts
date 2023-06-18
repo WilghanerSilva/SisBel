@@ -14,7 +14,8 @@ describe("Listar Agendamentos Controller", () => {
 					detalhes: "",
 					horario: "08:00",
 					funcionarioId: "any_id",
-					clienteId: "any_id"
+					clienteId: "any_id",
+					servicoId: "any_id"
 				},
 				{
 					id: "any_id",
@@ -22,7 +23,8 @@ describe("Listar Agendamentos Controller", () => {
 					detalhes: "",
 					horario: "08:00",
 					funcionarioId: "any_id",
-					clienteId: "any_id"
+					clienteId: "any_id",
+					servicoId: "any_id"
 				},
 				{
 					id: "any_id",
@@ -30,7 +32,8 @@ describe("Listar Agendamentos Controller", () => {
 					detalhes: "",
 					horario: "08:00",
 					funcionarioId: "any_id",
-					clienteId: "any_id"
+					clienteId: "any_id",
+					servicoId: "any_id"
 				}
 			];
       

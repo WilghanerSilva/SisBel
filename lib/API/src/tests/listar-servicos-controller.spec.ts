@@ -1,5 +1,5 @@
 import { iListarServicosService } from "../utils/interfaces";
-import ListarServicosCTER from "../controllers/listar-servicos.controller";
+import ListarServicosCTER from "../controllers/listar-servicos-controller";
 import { Servicos } from "@prisma/client";
 
 describe("Listar Servicos Controller", () => {

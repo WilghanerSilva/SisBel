@@ -11,7 +11,8 @@ describe("Listar Agenamento Service", () => {
 			detalhes: "",
 			horario: "08:00",
 			funcionarioId: "any_id",
-			clienteId: "any_id"
+			clienteId: "any_id",
+			servicoId: "any_id"
 		}];
       
 		async listByUserId(): Promise<Agendamentos[]> {
