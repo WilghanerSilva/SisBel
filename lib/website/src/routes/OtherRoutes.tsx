@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Home } from "../pages/Home";
 import { CadastroAgendamento } from "../pages/CadastroAgendamento";
+import { CadastrarFuncionario } from "../pages/CadastrarFuncionario";
 
 const OtherRoutes: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const OtherRoutes: React.FC = () => {
       <Routes>
         <Route path="/" Component={Home}/>
         <Route path="/agendamento/cadastro" Component={CadastroAgendamento}/>
+        <Route path="/cadastrar-funcionario" Component={CadastrarFuncionario}/>
       </Routes>
     </BrowserRouter>
   );
