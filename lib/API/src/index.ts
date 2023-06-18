@@ -4,6 +4,7 @@ import authRouter from "./routes/auth-router";
 import funcionarioRouter from "./routes/funcionario-router";
 import servicoRouter from "./routes/servico-router";
 import agendamentoRouter from "./routes/agendamento-router";
+import adminRouter from "./routes/admin-router";
 
 
 const app = new Server(3005, [
@@ -11,7 +12,8 @@ const app = new Server(3005, [
 	clienteRouter, 
 	funcionarioRouter,
 	servicoRouter,
-	agendamentoRouter
+	agendamentoRouter,
+	adminRouter
 ]);
 
 
