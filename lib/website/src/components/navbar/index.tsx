@@ -25,7 +25,7 @@ export default function NavBar() {
         <div className="img-wrapper">
           <FaUserAlt/>
         </div>
-        <p>{context.user?.name}</p>
+        <p>{context.user?.name.split(" ")[0]}</p>
         {menuIsOpen ? <GoTriangleUp/> : <GoTriangleDown/>}
       </div>
     </div>
