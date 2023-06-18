@@ -10,7 +10,7 @@ export function AdminOptions() {
   return (
     <div className="admin-options">
       <ul className="options">
-        <li className="options-container">
+        <li className="options-container" onClick={e => nav("/cadastrar-servico")}>
           <div className="option-icon">
             <ImScissors className="admin-option-icon"/>
           </div>

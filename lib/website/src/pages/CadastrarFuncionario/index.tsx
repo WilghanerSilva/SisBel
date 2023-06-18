@@ -58,7 +58,7 @@ export function CadastrarFuncionario() {
             <GiConfirmed id="result-icon"/>
             <p>Funcionário</p>
             <p>cadastrado com sucesso</p>
-        </div>
+          </div>
         </>
         :
         <>
