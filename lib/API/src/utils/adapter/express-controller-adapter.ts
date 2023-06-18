@@ -8,7 +8,8 @@ export default class ExpressControllerAdapter {
       
 			const httpRequest : HttpReq = {
 				body: req.body,
-				headers: req.headers
+				headers: req.headers,
+				params: req.params
 			};
 
 			const httpResponse : HttpRes = await controller.run(httpRequest);

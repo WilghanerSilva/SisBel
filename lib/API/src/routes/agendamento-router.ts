@@ -17,11 +17,11 @@ agendamentoRouter.post("/agendamento/cadastrar", ExpressControllerAdapter.adapt(
 	realizarAgendamentoController
 ));
 
-agendamentoRouter.get("/agendamento/listar-horarios", ExpressControllerAdapter.adapt(
+agendamentoRouter.post("/agendamento/listar-horarios", ExpressControllerAdapter.adapt(
 	listarHorariosController
 ));
 
-agendamentoRouter.get("/agendamento/listar-agendamentos", ExpressControllerAdapter.adapt(
+agendamentoRouter.post("/agendamento/listar-agendamentos", ExpressControllerAdapter.adapt(
 	ListarAgendamentosController
 ));
 

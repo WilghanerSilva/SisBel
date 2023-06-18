@@ -65,6 +65,15 @@ function Login () {
         context.setToken(data.token);
         context.setProfile(data.profile)
         context.setSigned(true);
+        api.interceptors.request.use(
+          config => {
+            config.headers.Authorization = `Bearer ${data.token}`;
+            return config;
+          },
+          error => {
+            return Promise.reject(error);
+          }
+        )
       }).catch(err => {
         setErrors([err.response.data.message]);
       })

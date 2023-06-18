@@ -31,6 +31,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				date: new Date(2000, 5, 6),
 				time: "08:00",
@@ -49,6 +50,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				time: "08:00",
 				details: ""
@@ -67,6 +69,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				date: new Date(2000, 5, 6),
 				details: ""
@@ -85,6 +88,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				date: new Date(2000, 5, 6),
 				time: "08:00",
 				details: ""
@@ -104,6 +108,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				date: new Date(2000, 5, 6),
 				time: "08:00",
@@ -124,6 +129,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				date: new Date(2000, 1, 6),
 				time: "08:00",
@@ -145,6 +151,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				date: new Date(2000, 5, 6),
 				time: "08:00",
@@ -167,6 +174,7 @@ describe("Realizar Agendamento Controller", () => {
 
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				date: new Date(2000, 5, 6),
 				time: "08:00",
@@ -185,6 +193,7 @@ describe("Realizar Agendamento Controller", () => {
     
 		const httpRequest: HttpReq = {
 			body: {
+				servicoId: "any_servico_id",
 				funcionarioId: "any_id",
 				date: new Date(2000, 5, 6),
 				time: "08:00",

@@ -12,7 +12,7 @@ export default class TokenManager implements iTokenManager{
 
 		if(!userId){throw new MissingParamError("userId");}
 		const token = jwt.sign({userId}, privateKey, {
-			expiresIn: "30m",
+			expiresIn: "43200m",
 			algorithm: "RS256"
 		});
 

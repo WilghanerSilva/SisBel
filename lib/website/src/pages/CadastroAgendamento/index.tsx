@@ -3,23 +3,29 @@ import { CardAgendamento } from "../../components/card-agendamento";
 import NavBar from "../../components/navbar";
 import SideMenu from "../../components/side-menu";
 import {BsChevronRight, BsChevronLeft} from "react-icons/bs"
-import {GiConfirmed} from "react-icons/gi";
 import "./style.css";
 import { FormAgendamento } from "../../components/form-agendamento";
 import { ConfirmacaoAgendamento } from "../../components/confirmacao-agendamento";
+import { ResultadoAgendamento } from "../../components/resultado-agendamento";
 
 export function CadastroAgendamento () {
-  const getCurrentDate = () => {
-    const timeElapsed = Date.now();
-    return new Date(timeElapsed);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [funcionarioId, setFuncionarioId] = useState("");
+  const [servicoId, setServicoId] = useState("");
+  const [date, setDate] = useState("");
+  const [detalhes, setDetalhes] = useState("");
+  const [horario, setHorario] = useState("");
+
+  const incrementPage = () => {
+    const newPage = (currentPage + 1) < 3 ? currentPage + 1 : 3
+    setCurrentPage(newPage);
+    console.log(newPage);
   }
 
-
-  const [currentDate, setCurrentDate] = useState<Date>(getCurrentDate());
-
-  const parseDate = (date: Date) => {
-    console.log(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`)
-    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+  const decrementPage = () => {
+    const newPage = (currentPage - 1) > 1 ? currentPage - 1: 1
+    setCurrentPage(newPage)
+    console.log(newPage);
   }
 
   return (
@@ -32,8 +38,8 @@ export function CadastroAgendamento () {
       </div>
       <div id="content-wrapper">
         <div className="navigation-container">
-          <button id="left"><BsChevronLeft/></button>
-          <button id="right"><BsChevronRight/></button>
+          <button id="left" onClick={decrementPage}><BsChevronLeft/></button>
+          <button id="right" onClick={incrementPage}><BsChevronRight/></button>
           <h1>Agendamento conclúido</h1>
         </div>
         
@@ -43,14 +49,35 @@ export function CadastroAgendamento () {
             <CardAgendamento/>
           </div>
         </div>
-
-        <div className="result-message">
-          <GiConfirmed id="result-icon"/>
-          <p>Agendamento</p>
-          <p>realizado com sucesso</p>
-          <p id="id">ID: #102546554</p>
-        </div>
         
+        {currentPage === 1 && (
+          <FormAgendamento
+            date={date}
+            detalhes={detalhes}
+            funcionarioId={funcionarioId}
+            horario={horario}
+            servicoId={servicoId}
+            setDate={setDate}
+            setDetalhes={setDetalhes}
+            setFuncionarioId={setFuncionarioId}
+            setHorario={setHorario}
+            setServicoId={setServicoId}
+            buttonFunction={incrementPage}
+          />
+        )}
+        {
+          currentPage === 2 && (
+            <ConfirmacaoAgendamento
+              date={date}
+              horario={horario}
+              servicoId={servicoId}
+            />
+        )}
+        {
+          currentPage === 3 && (
+            <ResultadoAgendamento/>
+        )}
+
       </div>
     </div>
   )

@@ -62,25 +62,3 @@
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(16rem, 1fr));
 }
-
-.result-message {
-  text-align: center;
-  padding-top: 8rem;
-}
-
-#result-icon {
-  font-size:  4rem;
-  color: #22C88C;
-  margin-bottom: 2rem;
-}
-
-.result-message > p{
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: #545454;
-}
-
-#id {
-  font-size: 1rem;
-  margin-top: 2rem;
-}

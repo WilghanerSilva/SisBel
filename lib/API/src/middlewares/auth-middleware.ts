@@ -24,8 +24,12 @@ export default class AuthMiddleware {
 
 			const authorizationSplit = authorization.split(" ");
 
+			if(!authorizationSplit[1])
+				return HttpResponse.unauthorized("Invalid token");
+
 			if(!regex.test(authorizationSplit[0]))
 				return HttpResponse.unauthorized("Invalid token");
+
 
 			const verifyResult = this.tokenManager.verify(authorizationSplit[1]);
     

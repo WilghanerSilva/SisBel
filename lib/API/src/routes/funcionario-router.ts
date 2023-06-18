@@ -25,7 +25,7 @@ funcionarioRouter.delete("/funcionario",
 	)
 );
 
-funcionarioRouter.get("/funcionario/listar", 
+funcionarioRouter.post("/funcionario/listar", 
 	ExpressControllerAdapter.adapt(
 		listarFuncionariosController
 	)
